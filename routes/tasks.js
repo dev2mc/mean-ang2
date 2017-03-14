@@ -1,69 +1,118 @@
-const Task = require('../models/task');
+const passport = require('passport');
+const User = require('../models/user');
+const generateId = require('../utils/generateId.js');
 
 module.exports = (app) => {
 
-  app.get('/tasks', (req, res) => {
-    Task.find({}, (err, tasks) => {
-      if (err) {
+  app.get('/tasks', passport.authenticate('jwt', {session:false}), (req, res) => {
+    let id = req.user;
+
+    User.getUserById(id, (err, user) => {
+
+      if(err){
         console.error(err);
-        res.json({msg: `error: ${err}`, data: null});
+        res.json({msg: `error: ${err.message}`, data: null});
       }
-      if (tasks) {
+
+      if(user){
+        let tasks = user.tasks;
         res.json({msg: 'success', data: tasks});
+      } else {
+        res.json({msg: `error: no user`, data: null});
       }
     });
   });
 
-  app.post('/tasks', (req, res) => {
-    let newTask = new Task(req.body);
-    newTask.save((err, data) => {
-      if (err) {
+  app.post('/tasks', passport.authenticate('jwt', {session:false}), (req, res) => {
+    let id = req.user;
+    let newTask = req.body;
+    newTask._id = generateId();
+
+    User.getUserById(id, (err, user) => {
+      if(err){
         console.error(err);
-        res.json({msg: `error: ${err}`, data: null});
+        res.json({msg: `error: ${err.message}`, data: null});
       }
 
-      if (data) {
-        res.json({msg: 'success', data: data});
-      } else {
-        res.json({msg: `error`, data: null});
+      if(user) {
+        user.tasks.push(newTask);
+
+        user.save(function (err) {
+          if (err) {
+            console.log(err);
+            res.json({msg: `error: ${err.message}`, data: null});
+          }
+
+          let newTaskAdded = user.tasks.id(newTask._id);
+
+          if(newTaskAdded) {
+            res.json({msg: 'success', data: newTaskAdded});
+          } else {
+            res.json({msg: `error`, data: null});
+          }
+        });
       }
     });
   });
 
-  app.put('/tasks/:id', (req, res) => {
-    let id = req.params.id;
+  app.delete('/tasks/:id', passport.authenticate('jwt', {session:false}), (req, res) => {
+    let id = req.user;
+    let taskId = req.params.id;
+    let deletedTask = {};
 
-    let data = req.body;
-
-    Task.findByIdAndUpdate(id, data, {new: true}, (err, task) => {
-      if (err) {
+    User.getUserById(id, (err, user) => {
+      if(err){
         console.error(err);
-        res.json({msg: `error: ${err}`, data: null});
+        res.json({msg: `error: ${err.message}`, data: null});
       }
 
-      if (task) {
-        res.json({msg: 'success', data: task});
-      } else {
-        res.json({msg: `error`, data: null});
+      if(user) {
+        deletedTask = user.tasks.id(taskId);
+
+        user.tasks.id(taskId).remove();
       }
+
+      user.save((err) =>{
+        if (err) {
+          console.log(err);
+          res.json({msg: `error: ${err.message}`, data: null});
+        }
+
+        res.json({msg: 'success', data: deletedTask});
+      });
     });
   });
 
-  app.delete('/tasks/:id', (req, res) => {
-    let id = req.params.id;
+  app.put('/tasks/:id', passport.authenticate('jwt', {session:false}), (req, res) => {
+    let id = req.user;
+    let taskId = req.params.id;
+    let updatedTask = req.body;
 
-    Task.findByIdAndRemove(id, (err, data) => {
-      if (err) {
-        console.error(`Error: ${err}`);
-        res.json({msg: `error: ${err}`, data: null});
+    User.getUserById(id, (err, user) => {
+      if(err){
+        console.error(err);
+        res.json({msg: `error: ${err.message}`, data: null});
       }
 
-      if (data) {
-        res.json({msg: 'success', data: data});
-      } else {
-        res.json({msg: `error`, data: null});
+      if(user) {
+        user.tasks.id(taskId).remove();
+        user.tasks.push(updatedTask);
+
+        user.save(function (err) {
+          if (err) {
+            console.log(err);
+            res.json({msg: `error: ${err.message}`, data: null});
+          }
+
+          let updatedTaskDown = user.tasks.id(taskId);
+
+          if(updatedTaskDown) {
+            res.json({msg: 'success', data: updatedTaskDown});
+          } else {
+            res.json({msg: `error`, data: null});
+          }
+        });
       }
     });
   });
-
 };
