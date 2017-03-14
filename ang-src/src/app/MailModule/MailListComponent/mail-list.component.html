@@ -1,0 +1,21 @@
+<div class="mail__data-container">
+  <div *ngFor='let mail of mails' class='mail__item' [class.mail__item_is_new]='!mail.read'>
+    <i class="fa fa-square" [class.fa-check-square]='showIfSelected(mail._id)' [class.mail__item-checkbox]='true' aria-hidden="true" (click)='addToSelectedIds(mail._id)'></i>
+    <i class="fa fa-star mail__item-starred" [class.mail__item-starred_is_true]='mail.starred' aria-hidden="true" (click)='toggleStarred(mail._id)'></i>
+    <p class="mail__item-category mail__item-category_col_{{mail.category}}" (click)='goToMail(mail._id)'>{{mail.category}}</p>
+    <p class="mail__item-sender" (click)='goToMail(mail._id)'>{{mail.fromName}}</p>
+    <p class="mail__item-subject" (click)='goToMail(mail._id)'>{{mail.subject}}</p>
+    <p class="mail__item-content" (click)='goToMail(mail._id)'>{{mail.body}}</p>
+    <p class="mail__item-time" (click)='goToMail(mail._id)'>{{getMailTime(mail.date)}}</p>
+  </div>
+
+  <div class="mail-list__show-info"  *ngIf='selectedIds.length > 0'>
+    <div class="mail-list__info-container">
+      <h3 class="mail-list__heading">You have selected {{selectedIds.length}} <span *ngIf='selectedIds.length > 1'>emails:</span><span *ngIf='selectedIds.length === 1'>email:</span></h3>
+      <p class="mail-list__option" (click)='toggleReadGroup()'>Mark as read/unread</p>
+      <p class="mail-list__option" (click)='toggleStarredGroup()'>Toggle starred/unstarred</p>
+      <p class="mail-list__option" (click)='deleteMailGroup()'>Delete <span *ngIf='selectedIds.length > 1'>emails</span><span *ngIf='selectedIds.length === 1'>email</span></p>
+      <button class="mail-list__btn" (click)='selectedIds=[]'>Cancel</button>
+    </div>
+  </div>
+</div>

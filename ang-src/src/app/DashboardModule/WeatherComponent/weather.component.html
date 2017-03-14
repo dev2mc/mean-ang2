@@ -1,0 +1,8 @@
+<div class="weather">
+  <i class="fa" [class.fa-sun-o]='type==="sunny"' [class.fa-cloud]='type==="cloudy"'  [class.weather__icon]='true' aria-hidden="true"></i>
+  <p class="weather__temperature">{{temperature}}<span class="weather__celsius">&#176;</span></p>
+  <div class="weather__data">
+    <p class="weather__location">{{location}}  <i class="fa fa-map-marker" aria-hidden="true"></i></p>
+    <p class="weather__weather">{{type}}</p>
+  </div>
+</div>

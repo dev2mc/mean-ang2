@@ -1,0 +1,41 @@
+<div class="dashboard">
+  <div class="dashboard__panel dashboard__panel_pos_top">
+      <update [type]='"twitter"' [data]='twitterMentions'></update>
+
+      <update [type]='"sales"' [data]='sales'></update>
+
+      <update [type]='"visitors"' [data]='visitors'></update>
+
+      <update [type]='"messages"' [data]='messages'></update>
+  </div>
+
+  <div class="dashboard__panels-container">
+    <div class="dashboard__panel dashboard__panel_pos_left">
+
+        <chart-stats [data]='lineChartData' [labels]='lineChartLabels' [colors]='lineChartColors' [legend]='lineChartLegend' [type]='lineChartType'></chart-stats>
+
+
+        <todo></todo>
+
+      <div class="dashboard__wrapper-group">
+          <data-widget [type]='"hosting"' [max]='hostingMax' [count]='hostingCount'></data-widget>
+
+          <data-widget [type]='"email"' [max]='emailMax' [count]='emailCount'></data-widget>
+      </div>
+
+        <notifications-widget [twitter]='notificationsTwitter' [email]='notificationsEmail' [money]='notificationsMoney'></notifications-widget>
+
+    </div>
+
+    <div class="dashboard__panel dashboard__panel_pos_right">
+
+        <yearly-sales [sales]='yearlySales' [visitors]='yearlyVisitors' [customers]='yearlyCustomers'></yearly-sales>
+
+        <weather [type]='weatherType' [temperature]='weatherTemperature' [location]='weatherLocation'></weather>
+
+        <calendar></calendar>
+
+        <data-graph [earnings]='dataGraphEarnings'></data-graph>
+    </div>
+  </div>
+</div>

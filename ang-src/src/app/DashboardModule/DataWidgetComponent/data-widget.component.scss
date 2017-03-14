@@ -1,0 +1,98 @@
+@import '../../../../assets/scss/utils/colors';
+
+
+$data-widget-bg-col: color(white-col);
+$data-widget---data-col: color(storm-gray);
+$data-widget---data--col--hosting: color(sunset-orange);
+$data-widget---data--col--email: color(golden-tainoi);
+$data-widget---description: color(silver-col);
+$data-widget---line-container: color(gallery);
+$data-widget---line: color(cadet-blue);
+
+//---data-widget---
+//-----------------
+.data-widget {
+  width: 289px;
+  height: 110px;
+  padding: 19px 18px 0 15px;
+
+  border-radius: 6px;
+
+  background: $data-widget-bg-col;
+}
+
+//---data-widget__data---
+//-----------------------
+.data-widget__data {
+  margin: 0;
+  margin-bottom: 8px;
+  padding: 0;
+
+  color: $data-widget---data-col;
+  font-family: 'HelveticaNeueLTStd Bold';
+  font-size: 23px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+//---data-widget__data_col_hosting---
+//-----------------------------------
+.data-widget__data_col_hosting {
+  color: $data-widget---data--col--hosting;
+}
+
+//---data-widget__data_col_email---
+//---------------------------------
+.data-widget__data_col_email {
+  color: $data-widget---data--col--email;
+}
+
+//---data-widget__description---
+//------------------------------
+.data-widget__description {
+  margin: 0;
+  margin-bottom: 16px;
+  padding: 0;
+
+  color: $data-widget---description;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 12px;
+  line-height: 1;
+  text-transform: lowercase;
+}
+
+//---data-widget__line-container---
+//---------------------------------
+.data-widget__line-container {
+  position: relative;
+  width: 100%;
+  height: 15px;
+
+  border-radius: 10px;
+  background: $data-widget---line-container;
+}
+
+//---data-widget__line---
+//-----------------------
+.data-widget__line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 15px;
+
+  border-radius: 10px;
+  background: $data-widget---line;
+}
+
+//---data-widget__line_bg_hosting---
+//----------------------------------
+.data-widget__line_bg_hosting {
+  background: $data-widget---data--col--hosting;
+}
+
+//---data-widget__line_bg_email---
+//--------------------------------
+.data-widget__line_bg_email {
+  background: $data-widget---data--col--email;
+}

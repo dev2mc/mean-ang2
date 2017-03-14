@@ -1,0 +1,14 @@
+<div class="chart-stats">
+  <div class="chart-stats__header">
+    <h3 class="chart-stats__heading">site statistic</h3>
+    <i class="fa fa-cog chart-stats__settings"></i>
+  </div>
+  <div class="chart-stats__container">
+    <canvas baseChart height="172px"
+    [datasets]="data"
+    [labels]="labels"
+    [colors]="colors"
+    [legend]="legend"
+    [chartType]="type"></canvas>
+  </div>
+</div>

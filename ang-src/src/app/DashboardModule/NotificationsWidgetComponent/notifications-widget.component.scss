@@ -1,0 +1,235 @@
+@import '../../../../assets/scss/utils/colors';
+
+$notifications-widget-bg-col: color(white-col);
+$notifications-widget---heading-container: color(alabaster);
+$notifications-widget---heading-col: color(silver-chalice);
+$notifications-widget---items-container-bg-col: color(white-col);
+$notifications-widget---item: color(silver-col);
+$notifications-widget---icon-col: color(white-col);
+$notifications-widget---message-col: color(white-col);
+$notifications-widget---icon-container--bg--twitter: color(cornflower-blue);
+$notifications-widget---icon-container--bg--email: color(casablanca);
+$notifications-widget---icon-container--bg--money: color(celery);
+
+$notifications-widget-bord-rad: 6px;
+
+//---notifications-widget---
+//--------------------------
+.notifications-widget {
+  // width: 618px;
+  max-width: 618px;
+
+  border-radius: $notifications-widget-bord-rad;
+
+  background: $notifications-widget-bg-col;
+}
+
+//---notifications-widget__heading-container---
+//---------------------------------------------
+.notifications-widget__heading-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 15px 0 18px;
+
+  border-top-left-radius: $notifications-widget-bord-rad;
+  border-top-right-radius: $notifications-widget-bord-rad;
+
+  background: $notifications-widget---heading-container;
+}
+
+//---notifications-widget__heading---
+//-----------------------------------
+.notifications-widget__heading {
+  margin: 0;
+  padding: 0;
+
+  color: $notifications-widget---heading-col;
+  font-family: 'HelveticaNeueLTStd Light';
+  font-size: 19px;
+  line-height: 1;
+}
+
+@keyframes rotateNotificationsCog {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+//---notifications-widget__settings---
+//------------------------------------
+.notifications-widget__settings {
+  transition: all .5s;
+
+  color: $notifications-widget---heading-col;
+  font-size: 19px;
+
+  cursor: pointer;
+
+  &:hover {
+    animation: rotateNotificationsCog 1s linear infinite;
+  }
+}
+
+//---notifications-widget__items-container---
+//-------------------------------------------
+.notifications-widget__items-container {
+  padding: 18px 14px 22px 21px;
+
+  border-bottom-left-radius: $notifications-widget-bord-rad;
+  border-bottom-right-radius: $notifications-widget-bord-rad;
+
+  background: $notifications-widget---items-container-bg-col;
+
+  > * {
+    margin-bottom: 15px;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+//---notifications-widget__item---
+//--------------------------------
+.notifications-widget__item {
+  display: flex;
+  align-items: center;
+}
+
+//---notifications-widget__icon-container---
+//------------------------------------------
+.notifications-widget__icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+
+  transform: translateY(-5px);
+
+  border-radius: 50%;
+
+  background: rgba($notifications-widget---item, .361);
+}
+
+//---notifications-widget__icon-container_bg_twitter---
+//-----------------------------------------------------
+.notifications-widget__icon-container_bg_twitter {
+  background: rgba($notifications-widget---icon-container--bg--twitter, .361);
+}
+
+//---notifications-widget__icon-container_bg_email---
+//---------------------------------------------------
+.notifications-widget__icon-container_bg_email {
+  background: rgba($notifications-widget---icon-container--bg--email, .361);
+}
+
+//---notifications-widget__icon-container_bg_money---
+//---------------------------------------------------
+.notifications-widget__icon-container_bg_money {
+  background: rgba($notifications-widget---icon-container--bg--money, .361);
+}
+
+//---notifications-widget__icon-decoration---
+//-------------------------------------------
+.notifications-widget__icon-decoration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 39px;
+  height: 39px;
+
+  border-radius: 50%;
+
+  background: $notifications-widget---item;
+}
+
+//---notifications-widget__icon-decoration_bg_twitter---
+//------------------------------------------------------
+.notifications-widget__icon-decoration_bg_twitter {
+  background: $notifications-widget---icon-container--bg--twitter;
+}
+
+//---notifications-widget__icon-decoration_bg_email---
+//------------------------------------------------------
+.notifications-widget__icon-decoration_bg_email {
+  background: $notifications-widget---icon-container--bg--email;
+}
+
+//---notifications-widget__icon-decoration_bg_money---
+//------------------------------------------------------
+.notifications-widget__icon-decoration_bg_money {
+  background: $notifications-widget---icon-container--bg--money;
+}
+
+//---notifications-widget__icon----
+//---------------------------------
+.notifications-widget__icon {
+  color: $notifications-widget---icon-col;
+  font-size: 19px;
+}
+
+//---notifications-widget__message----
+//------------------------------------
+.notifications-widget__message {
+  position: relative;
+  width: calc(100% - 60px);
+  margin-left: 15px;
+  padding: 0 19px;
+
+  border-radius: 10px;
+
+  background: $notifications-widget---item;
+
+  color: $notifications-widget---message-col;
+  font-family: 'HelveticaNeueLTStd Bold';
+  font-size: 14px;
+  line-height: 43px;
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: -9px;
+    width: 0;
+    height: 0;
+
+    transform: translateY(-5.5px);
+
+    border-width: 5.5px 9px 5.5px 0;
+    border-style: solid;
+    border-color: transparent $notifications-widget---item transparent transparent;
+
+    content: ' ';
+  }
+}
+
+//---notifications-widget__message_bg_twitter----
+//-----------------------------------------------
+.notifications-widget__message_bg_twitter {
+  background: $notifications-widget---icon-container--bg--twitter;
+
+  &::after {
+    border-color: transparent $notifications-widget---icon-container--bg--twitter transparent transparent;
+  }
+}
+
+//---notifications-widget__message_bg_email----
+//---------------------------------------------
+.notifications-widget__message_bg_email {
+  background: $notifications-widget---icon-container--bg--email;
+
+  &::after {
+    border-color: transparent $notifications-widget---icon-container--bg--email transparent transparent;
+  }
+}
+
+//---notifications-widget__message_bg_money----
+//---------------------------------------------
+.notifications-widget__message_bg_money {
+  background: $notifications-widget---icon-container--bg--money;
+
+  &::after {
+    border-color: transparent $notifications-widget---icon-container--bg--money transparent transparent;
+  }
+}

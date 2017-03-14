@@ -1,0 +1,119 @@
+@import '../../../../assets/scss/utils/colors';
+
+$dashboard-bg-col: color(wild-sand);
+
+//---dashboard---
+//---------------
+.dashboard {
+  padding: 27px 32px;
+
+  background: $dashboard-bg-col;
+}
+
+//---dashboard__panels-container---
+//---------------------------------
+.dashboard__panels-container {
+  &::after {
+    display: block;
+    height: 0;
+    clear: both;
+    content: '';
+    visibility: hidden;
+	}
+
+  @media screen and (max-width: 800px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+//---dashboard__panels-container---
+//---------------------------------
+.dashboard__panel_pos_top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  > * {
+    margin-bottom: 26px;
+  }
+
+  @media screen and (max-width: 800px) {
+    justify-content: space-around;
+  }
+}
+
+//---dashboard__panel_pos_left---
+//-------------------------------
+.dashboard__panel_pos_left {
+  width: calc(100% - 360px);
+  float: left;
+
+  > * {
+    display: block;
+    margin-bottom: 26px;
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    margin: 0 auto;
+    float: none;
+  }
+}
+
+//---dashboard__panel_pos_right---
+//--------------------------------
+.dashboard__panel_pos_right {
+  width: 326px;
+  float: right;
+
+  > * {
+    display: block;
+    margin-bottom: 26px;
+  }
+
+  @media screen and (max-width: 800px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+//---dashboard__wrapper---
+//------------------------
+.dashboard__wrapper {
+  margin-bottom: 26px;
+}
+
+//---dashboard__wrapper-group---
+//------------------------------
+.dashboard__wrapper-group {
+  display: flex !important;
+  flex-wrap: wrap;
+  margin-bottom: 0 !important;
+
+  > * {
+    margin-bottom: 26px;
+  }
+
+  > *:first-child {
+    margin-right: 42px;
+  }
+
+  &::after {
+    display: block;
+    height: 0;
+    clear: both;
+    content: '';
+    visibility: hidden;
+	}
+
+  @media screen and (max-width: 800px) {
+    justify-content: space-between;
+
+    > *:first-child {
+      margin-right: 0;
+    }
+  }
+}

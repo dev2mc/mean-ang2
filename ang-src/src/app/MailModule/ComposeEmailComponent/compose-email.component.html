@@ -1,0 +1,28 @@
+<div class="compose-email">
+  <div class="compose-email__controlls">
+    <h3 class="compose-email__heading">Compose a new email:</h3>
+  </div>
+  <form class="compose-email__form" novalidate #mailForm="ngForm">
+    <div class="compose-email__input-container">
+      <span class="compose-email__label">from</span>
+      <p class="compose-email__from">your@mail.com</p>
+    </div>
+    <div class="compose-email__input-container">
+      <span class="compose-email__label">to</span>
+      <input class='compose-email__input' type="email" name='mailTo' [(ngModel)]='defaultMail.to' required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [disabled]='isResponse'>
+    </div>
+    <div class="compose-email__input-container">
+      <input class='compose-email__input' type="text" name='mailSubject' placeholder="add a subject" [(ngModel)]='defaultMail.subject'>
+    </div>
+    <div class="compose-email__input-container compose-email__input-container_bord_none compose-email__input-container_margin_none">
+      <input class='compose-email__input' type="text" name='mailCategory' placeholder="add a category" [(ngModel)]='defaultMail.category'>
+    </div>
+    <div class="compose-email__content-container">
+      <textarea class="compose-email__content" [(ngModel)]='defaultMail.body' name='mailBody'></textarea>
+    </div>
+    <div class="compose-email__buttons">
+      <button class="compose-email__button compose-email__button_mod_send" [disabled]="!mailForm.form.valid" (click)='sendEmail()'>Send</button>
+      <button class="compose-email__button" (click)='goToMail()'>Cancel</button>
+    </div>
+  </form>
+</div>

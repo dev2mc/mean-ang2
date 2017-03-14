@@ -1,0 +1,6 @@
+<div class="notifications-item notifications-item_type_{{type}}">
+  <a routerLink="/{{link}}" class="notifications-item__link">
+    <i class="fa" aria-hidden="true" [class.fa-envelope]="type==='email'" [class.fa-bell]="type==='comment'" [class.notifications-item__icon]="true"></i>
+    <i class="notifications-item__quantity">{{quantity}}</i>
+  </a>
+</div>

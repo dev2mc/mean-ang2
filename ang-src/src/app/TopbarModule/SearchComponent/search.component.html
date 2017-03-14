@@ -1,0 +1,16 @@
+<div class="search">
+  <form class='search__form' novalidate>
+    <input type="text" class="search__input">
+    <button type="button" class="search__submit">
+      <i class="fa fa-search search__icon" aria-hidden="true"></i>
+    </button>
+  </form>
+
+  <form class="search__form search__form_device_mob" novalidate>
+    <button class="search__show-mob" (click)='showMobInput=!showMobInput; false'>
+      <span class="search__label">Search...</span>
+      <i class="fa fa-search search__icon" aria-hidden="true"></i>
+    </button>
+    <input type="text" class="search__input search__input_device_mob" placeholder="Search here..." autofocus *ngIf='showMobInput'>
+  </form>
+</div>

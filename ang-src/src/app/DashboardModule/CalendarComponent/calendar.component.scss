@@ -1,0 +1,130 @@
+@import '../../../../assets/scss/utils/colors';
+
+$calendar-bg-col: color(white-col);
+$calendar---header-bg-col: color(alabaster-dark);
+$calendar---date-col: color(ship-cove);
+$calendar---icon: $calendar---date-col;
+$calendar---day-col: $calendar---date-col;
+$calendar---day--mod--today-bg-col: color(solitude);
+$calendar---day--mod--different-month: color(dove-gran);
+$calendar---day--mod--selected-bg-col: $calendar---date-col;
+$calendar---day--mod--selected-col: color(white-col);
+$calendar---selected-date-col: $calendar---date-col;
+
+$calendar-bord-rad: 20px;
+
+//---calendar---
+//--------------
+.calendar {
+  display: block;
+  width: 326px;
+  min-height: 300px;
+  padding-bottom: 15px;
+
+  border-radius: $calendar-bord-rad;
+
+  background: $calendar-bg-col;
+}
+
+//---calendar__header---
+//----------------------
+.calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  padding: 0 36px;
+
+  border-top-left-radius: $calendar-bord-rad;
+  border-top-right-radius: $calendar-bord-rad;
+
+  background: $calendar---header-bg-col;
+}
+
+//---calendar__icon---
+//--------------------
+.calendar__icon {
+  color: $calendar---icon;
+  font-size: 17px;
+
+  cursor: pointer;
+}
+
+//---calendar__date---
+//--------------------
+.calendar__date {
+  color: $calendar---date-col;
+  font-family: 'HelveticaNeueLTStd Bold';
+  font-size: 17px;
+  line-height: 1;
+  text-transform: capitalize;
+}
+
+//---calendar__container---
+//-------------------------
+.calendar__container {
+  margin-bottom: 10px;
+  padding: 0 20px;
+
+  &::after {
+    display: table;
+
+    clear: both;
+
+    content: '';
+  }
+
+}
+
+//---calendar__day---
+//-------------------
+.calendar__day {
+  display: inline-block;
+  width: 14.28571429%;
+  height: 30px;
+  float: left;
+
+  color: $calendar---day-col;
+  font-family: 'HelveticaNeueLTStd Bold';
+  font-size: 12px;
+  line-height: 30px !important;
+  text-align: center;
+
+  cursor: pointer;
+
+  vertical-align: middle;
+
+  box-sizing: border-box;
+}
+
+//---calendar__day_mod_today---
+//-----------------------------
+.calendar__day_mod_today {
+  background: $calendar---day--mod--today-bg-col;
+}
+
+//---calendar__day_mod_different-month---
+//---------------------------------------
+.calendar__day_mod_different-month {
+  color: $calendar---day--mod--different-month;
+}
+
+//---calendar__day_mod_selected---
+//--------------------------------
+.calendar__day_mod_selected {
+  background: $calendar---day--mod--selected-bg-col;
+  color: $calendar---day--mod--selected-col;
+}
+
+//---calendar__selected-date---
+//-----------------------------
+.calendar__selected-date {
+  padding: 0 30px;
+
+  color: $calendar---selected-date-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 13px;
+  line-height: 1;
+  text-align: center;
+}

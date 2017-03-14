@@ -1,0 +1,59 @@
+@import '../../../../assets/scss/utils/colors';
+
+$profile---avatar-col: color(cadet-blue);
+$profile---dropdown-icon-col: $profile---avatar-col;
+
+//---profile---
+//-------------
+.profile {
+  @media (min-width: 601px) and (max-width: 1199px) {
+    margin-left: 15px;
+  }
+}
+
+//---profile__link---
+//-------------------
+.profile__link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+//---profile__avatar---
+//---------------------
+.profile__avatar {
+  width: 34px;
+  height: 34px;
+  margin-right: 10px;
+
+  border-radius: 50%;
+}
+
+//---profile__greeting---
+//-----------------------
+.profile__greeting {
+  margin: 0;
+  padding: 0;
+
+  color: $profile---avatar-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 16px;
+  line-height: 1;
+}
+
+.profile__greeting_font_bolder {
+  font-family: 'HelveticaNeueLTStd Bold';
+}
+
+//---profile__dropdown-icon---
+//----------------------------
+.profile__dropdown-icon {
+  margin-left: auto;
+
+  color: $profile---dropdown-icon-col;
+  font-size: 18px !important;
+}

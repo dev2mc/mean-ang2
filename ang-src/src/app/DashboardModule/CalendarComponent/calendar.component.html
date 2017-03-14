@@ -1,0 +1,24 @@
+<div class="calendar">
+  <div class="calendar__header">
+    <i class="fa fa-chevron-left calendar__icon calendar__icon_mod_prev" (click)="previous()"></i>
+    <span class="calendar__date">{{month.format("MMMM YYYY")}}</span>
+    <i class="fa fa-chevron-right calendar__icon calendar__icon_mod_next" (click)="next()"></i>
+  </div>
+  <div class="calendar__container">
+    <div class="calendar__week">
+      <span class="calendar__day">S</span>
+      <span class="calendar__day">M</span>
+      <span class="calendar__day">T</span>
+      <span class="calendar__day">W</span>
+      <span class="calendar__day">T</span>
+      <span class="calendar__day">F</span>
+      <span class="calendar__day">S</span>
+    </div>
+    <div class="calendar__week" *ngFor='let week of weeks'>
+      <span class="calendar__day" *ngFor='let day of week.days' [class.calendar__day_mod_today]='day.isToday' [class.calendar__day_mod_different-month]='!day.isCurrentMonth' [class.calendar__day_mod_selected]='day.date.isSame(selected)'  (click)="select(day)">
+        {{day.number}}
+      </span>
+    </div>
+  </div>
+  <p class="calendar__selected-date"><b>Selected date:</b> {{selected.format('dddd, MMMM Do YYYY')}}</p>
+</div>

@@ -1,0 +1,66 @@
+@import '../../../../assets/scss/utils/colors';
+
+$menubar-bg-col: color(charade);
+$menubar---collapse-col: color(gray-chateau);
+$menubar---collapse-icon-col: $menubar---collapse-col;
+$menubar---collapse-name-col: $menubar---collapse-col;
+
+//---menubar---
+//-------------
+.menubar {
+  width: 322px;
+  height: 100%;
+  padding: 35px 54px 35px 34px;
+
+  transition: all .4s;
+
+  background: $menubar-bg-col;
+}
+
+//---menubar__collapse---
+//-----------------------
+.menubar__collapse {
+  display: flex;
+  align-items: center;
+  margin-top: 45px;
+
+  cursor: pointer;
+}
+
+//---menubar__collapse-icon---
+//----------------------------
+.menubar__collapse-icon {
+  margin-right: 21px;
+  transform: rotate(180deg);
+
+  color: $menubar---collapse-icon-col;
+  font-size: 22px !important;
+}
+
+//---menubar__collapse-name---
+//----------------------------
+.menubar__collapse-name {
+  margin: 0;
+  padding: 0;
+
+  color: $menubar---collapse-name-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 12px;
+  line-height: 1;
+  text-transform: capitalize;
+}
+
+//-------------------STYLES FOR COLLAPSED MENUBAR----------------------
+.menubar_is_collapsed {
+  width: 50px;
+  padding-right: 10px;
+  padding-left: 10px;
+
+  .menubar__collapse-name {
+    display: none;
+  }
+
+  .menubar__collapse-icon {
+    transform: rotate(0deg);
+  }
+}

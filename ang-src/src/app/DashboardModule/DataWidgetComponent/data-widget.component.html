@@ -1,0 +1,8 @@
+<div class="data-widget">
+  <p class="data-widget__data" [class.data-widget__data_col_hosting]='type==="hosting"' [class.data-widget__data_col_email]='type==="email"'>{{count}}/{{max}} <span *ngIf='type==="hosting"'>GB</span></p>
+  <p class="data-widget__description" *ngIf='type==="hosting"'>From your hosting usage</p>
+  <p class="data-widget__description" *ngIf='type==="email"'>emails read</p>
+  <div class="data-widget__line-container">
+    <div class="data-widget__line" [class.data-widget__line_bg_hosting]='type==="hosting"' [class.data-widget__line_bg_email]='type==="email"' [ngStyle]="{'width': (count/max*100)+'%'}"></div>
+  </div>
+</div>

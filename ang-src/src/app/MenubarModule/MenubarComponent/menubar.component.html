@@ -1,0 +1,7 @@
+<div class="menubar" [class.menubar_is_collapsed]='collapsed'>
+  <menubar-item *ngFor='let value of menuDataArr' [icon]='value.icon' [name]='value.name' [number]='value.number' [link]='value.link' [collapse]='collapsed'></menubar-item>
+  <div class="menubar__collapse" (click)='collapsed=!collapsed'>
+    <i class="fa fa-play-circle menubar__collapse-icon" aria-hidden="true"></i>
+    <p class="menubar__collapse-name">Collapse Menu</p>
+  </div>
+</div>

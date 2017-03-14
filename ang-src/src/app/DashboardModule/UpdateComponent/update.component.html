@@ -1,0 +1,18 @@
+<div class="update">
+  <div class="update__icon-container">
+    <div class="update__icon update__icon_bg_{{type}}">
+      <i class="fa fa-twitter" [class.fa-twitter]='type==="twitter"' [class.fa-usd]='type==="sales"' [class.fa-user]='type==="visitors"' [class.fa-envelope]='type==="messages"' [class.update__icon-item]='true' aria-hidden="true"></i>
+    </div>
+    <div class="update__icon-decration update__icon-decration_bg_{{type}}"></div>
+  </div>
+  <div class="update__info" [ngSwitch]="type">
+    <p class="update__count">
+      {{data}}
+      <span *ngIf='type==="sales"'>$</span>
+    </p>
+    <template ngSwitchCase="twitter"><p class="update__description">Mentioned</p></template>
+    <template ngSwitchCase="sales"><p class="update__description">Today Sales</p></template>
+    <template ngSwitchCase="visitors"><p class="update__description">Today Visitors</p></template>
+    <template ngSwitchCase="messages"><p class="update__description">New messages</p></template>
+  </div>
+</div>

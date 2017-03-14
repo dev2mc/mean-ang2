@@ -1,0 +1,154 @@
+@import '../../../../assets/scss/utils/colors';
+
+$update-bg-col: color(white-col);
+$update---icon-container-bg-col: color(wild-sand);
+$update---icon-item-col: color(white-col);
+$update---icon--bg--twitter: color(cornflower-blue);
+$update---count-font-col: color(charade);
+$update---description: color(dusty-gray);
+$update---icon--bg--sales: color(celery);
+$update---icon--bg--visitors: color(sunset-orange);
+$update---icon--bg--messages: color(casablanca);
+
+//---update------
+//---------------
+.update {
+  display: flex;
+  align-items: center;
+  width: 223px;
+  height: 110px;
+  padding: 0 13px;
+
+  border-radius: 7px;
+
+  background: $update-bg-col;
+}
+
+//---update__icon-container------
+//-------------------------------
+.update__icon-container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 71px;
+  height: 71px;
+  margin-right: 13px;
+
+  border-radius: 50%;
+
+  background: $update---icon-container-bg-col;
+
+  overflow: hidden;
+}
+
+//---update__icon-decration------
+//-------------------------------
+.update__icon-decration {
+  position: absolute;
+  width: 0;
+  height: 0;
+
+  transform: translate(34px, -50px);
+
+  border-width: 147px 0 0 71px;
+  border-style: solid;
+  border-color: transparent transparent transparent $update---count-font-col;
+
+  opacity: .251;
+}
+
+//---update__icon-decration_bg_twitter------
+//------------------------------------------
+.update__icon-decration_bg_twitter {
+  border-color: $update---icon--bg--twitter;
+}
+
+//---update__icon-decration_bg_sales------
+//----------------------------------------
+.update__icon-decration_bg_sales {
+  border-color: $update---icon--bg--sales;
+}
+
+//---update__icon-decration_bg_visitors------
+//----------------------------------------
+.update__icon-decration_bg_visitors {
+  border-color: $update---icon--bg--visitors;
+}
+
+//---update__icon-decration_bg_messages------
+//----------------------------------------
+.update__icon-decration_bg_messages {
+  border-color: $update---icon--bg--messages;
+}
+
+//---update__icon------
+//---------------------
+.update__icon {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 59px;
+  height: 59px;
+
+  border-radius: 50%;
+
+  background: $update---icon--bg--twitter;
+
+  z-index: 100;
+}
+
+//---update__icon_bg_twitter------
+//--------------------------------
+.update__icon_bg_twitter {
+  background: $update---icon--bg--twitter;
+}
+
+//---update__icon_bg_sales------
+//------------------------------
+.update__icon_bg_sales {
+  background: $update---icon--bg--sales;
+}
+
+//---update__icon_bg_visitors------
+//------------------------------
+.update__icon_bg_visitors {
+  background: $update---icon--bg--visitors;
+}
+
+//---update__icon_bg_messages------
+//------------------------------
+.update__icon_bg_messages {
+  background: $update---icon--bg--messages;
+}
+
+//---update__icon-item------
+//--------------------------
+.update__icon-item {
+  color: $update---icon-item-col;
+  font-size: 35px;
+}
+
+//---update__count------
+//----------------------
+.update__count {
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 0;
+
+  color: $update---count-font-col;
+  font-family: 'HelveticaNeueLTStd Bold';
+  font-size: 24px;
+  line-height: 1;
+}
+
+.update__description {
+  margin: 0;
+  padding: 0;
+
+  color: $update---description;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 14px;
+  line-height: 1;
+}

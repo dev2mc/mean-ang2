@@ -1,0 +1,148 @@
+/////////////////////////////////////////////
+@import '../../../../assets/scss/utils/colors';
+
+$view-mail-bg-col: color(white-col);
+$view-mail---heading-col: color(ebony-clay);
+$view-mail---sender-col: $view-mail---heading-col;
+$view-mail---info-col: $view-mail---heading-col;
+$view-mail---respond-bg-col: color(java);
+$view-mail---respond-col: color(white-col);
+$view-mail---body-col: $view-mail---heading-col;
+
+//---view-mail---
+//---------------
+.view-mail {
+  width: 100%;
+  padding: 20px 15px;
+
+  background: $view-mail-bg-col;
+}
+
+//---view-mail__heading---
+//------------------------
+.view-mail__heading {
+  margin: 0;
+  margin-bottom: 30px;
+  padding: 0;
+
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 30px;
+  line-height: 1;
+  text-transform: capitalize;
+}
+
+//---view-mail__controlls---
+//--------------------------
+.view-mail__controlls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+//---view-mail__sender---
+//-----------------------
+.view-mail__sender {
+  color: $view-mail---sender-col;
+}
+
+//---view-mail__info---
+//---------------------
+.view-mail__info {
+  > * {
+    margin: 0;
+    margin-bottom: 7px;
+
+    line-height: 1;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+//---view-mail__sender----
+//---view-mail__address---
+//---view-mail__data------
+//------------------------
+.view-mail__sender,
+.view-mail__address,
+.view-mail__data {
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 13px;
+}
+
+//---view-mail__respond---
+//------------------------
+.view-mail__respond {
+  margin: 0;
+  padding: 8px 22px;
+
+  border-radius: 6px;
+
+  background: $view-mail---respond-bg-col;
+
+  color: $view-mail---respond-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 16px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  user-select: none;
+}
+
+//---view-mail__body---
+//---------------------
+.view-mail__body {
+  padding: 10px;
+
+  color: $view-mail---body-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+//---view-mail__star---
+//---------------------
+.view-mail__star {
+  display: block;
+  margin-bottom: 20px !important;
+}
+
+//---view-mail__back---
+//---------------------
+.view-mail__back,
+.view-mail__star {
+  margin: 0;
+  padding: 8px 22px;
+
+  border: 0;
+  border-radius: 6px;
+
+  background: $view-mail---respond-bg-col;
+
+  color: $view-mail---respond-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 16px;
+  line-height: 1;
+  text-transform: uppercase;
+
+  user-select: none;
+
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+}
+
+//---view-mail__category---
+//-------------------------
+.view-mail__category {
+  margin: 0;
+  padding: 0;
+
+  color: $view-mail---body-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 15px;
+}

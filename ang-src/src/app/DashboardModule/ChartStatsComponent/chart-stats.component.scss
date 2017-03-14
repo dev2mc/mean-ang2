@@ -1,0 +1,71 @@
+@import '../../../../assets/scss/utils/colors';
+
+$chart-stats-bg-col: color(white-col);
+$chart-stats---header-bg-col: color(alabaster);
+$chart-stats---heading-col: color(silver-chalice);
+$chart-stats---settings-col: color(silver-chalice);
+
+$dash-cart-stats-broder-rad: 6px;
+
+//---chart-stats---
+//-----------------
+.chart-stats {
+  max-width: 617px;
+
+  border-radius: $dash-cart-stats-broder-rad;
+
+  background: $chart-stats-bg-col;
+}
+
+//---chart-stats__header---
+//-------------------------
+.chart-stats__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 26px 0 12px;
+
+  border-top-left-radius: $dash-cart-stats-broder-rad;
+  border-top-right-radius: $dash-cart-stats-broder-rad;
+
+  background: $chart-stats---header-bg-col;
+}
+
+//---chart-stats__heading---
+//--------------------------
+.chart-stats__heading {
+  margin: 0;
+  padding: 0;
+
+  color: $chart-stats---heading-col;
+  font-family: 'HelveticaNeueLTStd Light';
+  font-size: 19px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+@keyframes chart-stats-set-spin {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+//---chart-stats__settings---
+//---------------------------
+.chart-stats__settings {
+  color: $chart-stats---settings-col;
+  font-size: 19px;
+
+  cursor: pointer;
+
+  &:hover {
+    animation: chart-stats-set-spin 1s linear infinite;
+  }
+}
+
+//---chart-stats__container---
+//----------------------------
+.chart-stats__container {
+  width: 100%;
+  padding: 10px 25px 14px 0;
+}

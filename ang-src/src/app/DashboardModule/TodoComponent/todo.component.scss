@@ -1,0 +1,227 @@
+@import '../../../../assets/scss/utils/colors';
+
+$todo-bg-col: color(white-col);
+$todo---header-container-bg-col: color(java);
+$todo---header-col: color(white-col);
+$todo---add-btn-col: $todo---header-col;
+$todo-item-bg-col: color(wild-sand);
+$todo-item-col: color(silver-chalice);
+$todo-item--is--completed-bg-col: color(java);
+$todo-item--is--completed-col: color(white-col);
+$todo---form-container-bg-col: color(white-col);
+$todo---input-label: color(ebony-clay);
+$todo---input-border-col: color(silver-col);
+$todo---btn-col: color(white-col);
+$todo---btn--is--submit-bg-col: color(celery);
+$todo---btn--is--cancel-bg-col: color(sunset-orange);
+$todo---btn--is--submit-disabled-bg-col: color(silver-col);
+$todo---input-shadow-col: color(sunset-orange);
+
+$todo-bord-rad: 6px;
+
+//---todo---
+//----------
+.todo {
+  position: relative;
+  max-width: 620px;
+  // width: 620px;
+  min-height: 300px;
+
+  border-radius: $todo-bord-rad;
+
+  background: $todo-bg-col;
+}
+
+//---todo__header-container---
+//----------------------------
+.todo__header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 17px 0 18px;
+
+  border-top-left-radius: $todo-bord-rad;
+  border-top-right-radius: $todo-bord-rad;
+
+  background: $todo---header-container-bg-col;
+}
+
+//---todo__header---
+//------------------
+.todo__header {
+  margin: 0;
+  padding: 0;
+
+  color: $todo---header-col;
+  font-family: 'HelveticaNeueLTStd Light';
+  font-size: 18px;
+  line-height: 1;
+}
+
+//---todo__add-btn---
+//-------------------
+.todo__add-btn {
+  color: $todo---add-btn-col;
+  font-size: 18px;
+
+  cursor: pointer;
+}
+
+//---todo__container---
+//---------------------
+.todo__container {
+  padding: 13px 17px 9px 15px;
+}
+
+//---todo-item---
+//---------------
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 43px;
+  margin-bottom: 14px;
+  padding: 0 17px 0 35px;
+
+  border-radius: 7px;
+
+  background: $todo-item-bg-col;
+  background-image: url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAARCAYAAAAPFIbmAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpmNDk4MGNjNi05Y2QzLTI4NDEtOWU0YS1hMmQxN2UyOTdhMGEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OEI1MjAxNjc5QTlCMTFFNkFEOTE5RDUzM0IzRjNFQ0MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OEI1MjAxNjY5QTlCMTFFNkFEOTE5RDUzM0IzRjNFQ0MiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ZWEwNWNmODQtMmEyMS0zMDQxLTgzZTctYWNiZTdkM2M1NTYzIiBzdFJlZjpkb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6ZjQ4YzIxZmMtZmY0Mi0xMWU0LTgwYzQtODQ2NWU0MzQ2NTViIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+nRDXWQAAAGJJREFUeNpiPLxvXxYDA0MEEK8A4mkMCAAXZwISsUDMBRVABnBxkKLFQPwdahIygIszAq1jIAQY////T1ARy5H9+wkqYmIgAjBBvXoISjOgBQFYfDAGAVG+Izqc6BgEAAEGAHoHLSU63pEHAAAAAElFTkSuQmCC);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: 9px center;
+
+  color: $todo-item-col;
+  font-family: 'HelveticaNeueLTStd Light';
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.todo-item_is_completed {
+  background: $todo-item--is--completed-bg-col;
+  background-image: url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAARCAYAAAAPFIbmAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA25pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpmNDk4MGNjNi05Y2QzLTI4NDEtOWU0YS1hMmQxN2UyOTdhMGEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTA5NDQxOTk5QUIwMTFFNkE5OThBNzZDRDdERTYwOTkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTA5NDQxOTg5QUIwMTFFNkE5OThBNzZDRDdERTYwOTkiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OEI1MjAxNjY5QTlCMTFFNkFEOTE5RDUzM0IzRjNFQ0MiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OEI1MjAxNjc5QTlCMTFFNkFEOTE5RDUzM0IzRjNFQ0MiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz789ZWYAAAAUElEQVR42mL4//9/FhAfgtIMSBguzggkjjMwMLAC8TcgtmNAALg4E5BYDMTfgXgFAyqAi4NMYiAEmBiIANRVlAXEh6A0MoCLjwYBFYMAIMAAXBpMSG3OOZIAAAAASUVORK5CYII=);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: 9px center;
+
+  color: $todo-item--is--completed-col;
+}
+
+//---todo-item__controll-container---
+//-----------------------------------
+.todo-item__controll-container {
+  display: flex;
+  align-items: center;
+
+  > * {
+    margin-right: 11px;
+  }
+
+  > *:last-child {
+    margin-right: 0;
+  }
+}
+
+//---todo-item__controll---
+//-------------------------
+.todo-item__controll {
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+//---todo-item__controll_complete_true---
+//---------------------------------------
+.todo-item__controll_complete_true {
+  font-size: 18px;
+}
+
+//---todo__form-container---
+//--------------------------
+.todo__form-container {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  border-radius: $todo-bord-rad;
+
+  background: $todo---form-container-bg-col;
+}
+
+//---todo__input-label---
+//-----------------------
+.todo__input-label {
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 0;
+
+  color: $todo---input-label;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 25px;
+  line-height: 1.3;
+}
+
+//---todo__input---
+//-----------------
+.todo__input {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 1px 20px;
+
+  transition: all .3s;
+
+  border: 1px solid $todo---input-border-col;
+
+  border-radius: $todo-bord-rad;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 10px $todo---input-border-col;
+  }
+
+  &.ng-invalid.ng-touched {
+    border: solid 1px $todo---input-shadow-col;
+
+    box-shadow: 0 0 10px $todo---input-shadow-col;
+  }
+}
+
+//---todo__btn---
+//---------------
+.todo__btn {
+  padding: 3px 20px;
+
+  border: 0;
+  border-radius: $todo-bord-rad;
+
+  color: $todo---btn-col;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+//---todo__btn_is_submit---
+//-------------------------
+.todo__btn_is_submit {
+  margin-right: 10px;
+
+  background: $todo---btn--is--submit-bg-col;
+
+  &:disabled {
+    background: $todo---btn--is--submit-disabled-bg-col;
+
+    cursor: not-allowed;
+  }
+}
+
+//---todo__btn_is_cancel---
+//-------------------------
+.todo__btn_is_cancel {
+  background: $todo---btn--is--cancel-bg-col;
+}

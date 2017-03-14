@@ -1,0 +1,269 @@
+@import '../../../../assets/scss/utils/colors';
+
+$add-item---container-bg-col: color(white-col);
+$add-item---close-col: color(ebony-clay);
+$add-item---close-col-after-bg-col: color(ebony-clay);
+$add-item---close-col-after-col: color(white-col);
+$add-item---heading-col: color(ebony-clay);
+$add-item---label-name-col: $add-item---heading-col;
+
+$add-item---input-col: $add-item---heading-col;
+$add-item---input-placeholder-col: color(silver-chalice);
+
+$add-item---input-box-shadow-col: $add-item---heading-col;
+
+$add-item---tag-item-bg-col: color(ebony-clay);
+$add-item---tag-item-col: color(white-col);
+
+$add-item---button-bg-col: color(alto);
+$add-item---button-col: color(white-col);
+
+$add-item---button--for--save-bg-col: color(mantis);
+$add-item---button--for--close-bg-col: color(sunset-orange);
+
+$add-item---input-col-invalid: color(sunset-orange);
+
+//---add-item---
+//--------------
+.add-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  //----------styles for animations-------
+  &.ng-enter {
+    transition: all .3s linear;
+    opacity: 0;
+  }
+
+  &.ng-enter-active {
+    opacity: 1;
+  }
+
+  &.ng-leave {
+    transition: all .5s linear;
+    opacity: 0;
+  }
+}
+
+//---add-item__container---
+//-------------------------
+.add-item__container {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 50px 30px;
+
+  background: $add-item---container-bg-col;
+  // background-color: transparent;
+}
+
+.cssfilters {
+  .add-item__container {
+    background-color: transparent;
+  }
+  // [class*='add-item__container'] {
+  //   background-color: transparent;
+  // }
+}
+
+//---add-item__close---
+//---------------------
+.add-item__close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+
+  color: $add-item---close-col;
+  font-size: 50px;
+  line-height: 1;
+  text-align: center;
+
+  cursor: pointer;
+
+  &:hover {
+    &::after {
+      display: block;
+
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    top: -10px;
+    right: 46%;
+    width: 66px;
+    padding: 3px;
+
+    transform: translateX(50%);
+    transition: visibility 0s, opacity .3s linear;
+
+    border-radius: 5px;
+
+    background: $add-item---close-col-after-bg-col;
+
+    color: $add-item---close-col-after-col;
+    font-size: 12px;
+    font-style: normal;
+    text-align: center;
+
+    content: 'close';
+
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+//---add-item__heading---
+//-----------------------
+.add-item__heading {
+  margin: 0;
+  margin-bottom: 30px;
+  padding: 0;
+
+  color: $add-item---heading-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 30px;
+  line-height: 1;
+}
+
+//---add-item__label-----
+//-----------------------
+.add-item__label {
+  display: block;
+  margin-bottom: 30px;
+}
+
+//---add-item__label-name-----
+//----------------------------
+.add-item__label-name {
+  margin: 0;
+  margin-bottom: 15px;
+  padding: 0;
+
+  color: $add-item---label-name-col;
+  font-family: 'HelveticaNeueLTStd Light';
+  font-size: 20px;
+  line-height: 1;
+}
+
+//---add-item__input-----
+//-----------------------
+.add-item__input {
+  width: 300px;
+  height: 30px;
+  padding: 0 20px;
+
+  transition: all .5s;
+
+  border: solid 1px $add-item---input-placeholder-col;
+  border-radius: 4px;
+
+  outline: none;
+
+  color: $add-item---input-placeholder-col;
+  font-family: 'HelveticaNeueLTStd Light';
+  font-size: 14px;
+  line-height: 1;
+
+  &.ng-invalid.ng-touched {
+    border: solid 1px $add-item---input-col-invalid;
+
+    box-shadow: 0 0 10px $add-item---input-col-invalid;
+  }
+
+  &:focus {
+    color: $add-item---input-col;
+
+    box-shadow: 0 0 20px $add-item---input-box-shadow-col;
+  }
+}
+
+//---add-item__input_is_description-----
+//--------------------------------------
+.add-item__input_is_description {
+  height: 100px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+//---add-item__tags-----
+//----------------------
+.add-item__tags {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 300px;
+
+  > * {
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+//---add-item__tags-item-----
+//---------------------------
+.add-item__tag-item {
+  margin-bottom: 5px;
+  padding: 5px 10px;
+
+  border-radius: 4px;
+
+  background: $add-item---tag-item-bg-col;
+
+  color: $add-item---tag-item-col;
+  font-family: 'HelveticaNeueLTStd Light';
+  font-size: 12px;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+//---add-item__button-----
+//------------------------
+.add-item__button {
+  height: 30px;
+  padding-right: 15px;
+  padding-left: 15px;
+
+  border: 0;
+  border-radius: 4px;
+
+  background: $add-item---button-bg-col;
+
+  color: $add-item---button-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 14px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+//---add-item__button_for_save-----
+//---------------------------------
+.add-item__button_for_save {
+  margin-right: 10px;
+
+  background: $add-item---button--for--save-bg-col;
+
+  &:disabled {
+    background: $add-item---button-bg-col;
+
+    cursor: not-allowed;
+  }
+}
+
+.add-item__button_for_close {
+  background: $add-item---button--for--close-bg-col;
+}

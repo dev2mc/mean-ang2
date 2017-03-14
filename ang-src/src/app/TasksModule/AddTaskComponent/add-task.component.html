@@ -1,0 +1,36 @@
+<div class="add-item__container">
+
+  <i class="add-item__close" (click)='hide()'>&times;</i>
+
+  <form #addItemForm='ngForm' class='add-item__form' novalidate>
+    <h3 class="add-item__heading">Add data for new task:</h3>
+
+    <label class="add-item__label">
+      <p class="add-item__label-name">Name of new task:</p>
+      <input [(ngModel)]='item.name' tabindex='1' type="text" name="addItemName" placeholder="add name for new task" class="add-item__input add-item__input_is_name" required>
+    </label>
+
+    <label class="add-item__label">
+      <p class="add-item__label-name">Tag for new task:</p>
+      <input [(ngModel)]='item.tag' tabindex='2' type="text" name="addItemTag" placeholder="add tag for new task" class="add-item__input add-item__input_is_tag" required>
+    </label>
+
+    <label class="add-item__label">
+      <p class="add-item__label-name">Or choose an already used tag:</p>
+      <div class="add-item__tags">
+        <span class="add-item__tag-item" *ngFor='let tag of tags' [hidden]='tag === "all"' (click)='item.tag = tag'>{{tag}}</span>
+      </div>
+    </label>
+
+    <label class="add-item__label">
+      <p class="add-item__label-name">Description of new task:</p>
+      <textarea [(ngModel)]='item.description' tabindex='3' name="addItemDesc" placeholder="add description for new task" class="add-item__input add-item__input_is_description" required></textarea>
+    </label>
+
+    <button tabindex='4' type="button" name="addItemAdd" class="add-item__button add-item__button_for_save" (click)='add(item); hide()' [disabled]='!addItemForm.form.valid'>add new item</button>
+
+    <button tabindex='5' type="button" name="addItemAdd" (click)='hide()' class="add-item__button add-item__button_for_close">close</button>
+
+  </form>
+
+</div>

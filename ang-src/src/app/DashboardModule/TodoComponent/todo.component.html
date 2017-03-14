@@ -1,0 +1,23 @@
+<div class="todo">
+  <div class="todo__header-container">
+    <h3 class="todo__header">ToDo List</h3>
+    <i class="fa fa-plus todo__add-btn" aria-hidden="true" (click)='toggleShowAdd()'></i>
+  </div>
+  <div class="todo__container">
+    <div *ngFor='let todo of todos' class="todo-item" [class.todo-item_is_completed]='todo.completed'>
+      {{todo.description}}
+      <div class="todo-item__controll-container">
+        <i class="fa" [class.fa-ban]='todo.completed' [class.fa-check]='!todo.completed' [class.todo-item__controll]='true' [class.todo-item__controll_complete_true]='true' aria-hidden="true"  (click)='toggleComplete(todo._id)'></i>
+        <i class="fa fa-times todo-item__controll todo-item__controll_delete_btn" aria-hidden="true" (click)='deleteTodo(todo._id)'></i>
+      </div>
+    </div>
+  </div>
+  <div class="todo__form-container" *ngIf='showAdd'>
+    <form #addTodoItemForm='ngForm' class='todo__form' novalidate>
+      <h3 class="todo__input-label">Add description for new todo item:</h3>
+      <input autofocus type="text" class="todo__input" [(ngModel)]='boilerplateTodo.description' name='addTodoItemDesc' tabindex='1' required>
+      <button class="todo__btn todo__btn_is_submit" (click)='addTodo(boilerplateTodo);toggleShowAdd();resetBoilerplateTodo();false' tabindex='2' [disabled]='!addTodoItemForm.form.valid'>Add</button>
+      <button class="todo__btn todo__btn_is_cancel"  (click)='toggleShowAdd();resetBoilerplateTodo();false' tabindex='3'>Cancel</button>
+    </form>
+  </div>
+</div>

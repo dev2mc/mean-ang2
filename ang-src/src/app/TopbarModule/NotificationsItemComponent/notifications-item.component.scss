@@ -1,0 +1,74 @@
+@import '../../../../assets/scss/utils/colors';
+
+$notifications-item---link-col: color(silver-col);
+$notifications-item---quantity--type--comments-bg-col: color(alizarin-crimson);
+$notifications-item---quantity-col: color(wild-sand);
+$notifications-item---quantity--type--mail-bg-col: color(casablanca);
+
+//---notifications-item---
+//------------------------
+.notifications-item {
+  position: relative;
+}
+
+//---notifications-item__link---
+//------------------------------
+.notifications-item__link {
+  margin-left: 25px;
+
+  @media(max-width: 600px) {
+    margin-left: 12px;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+//---notifications-item__icon---
+//------------------------------
+.notifications-item__icon {
+  color: $notifications-item---link-col;
+  font-size: 23px !important;
+
+  @media(max-width: 600px) {
+    font-size: 20px !important;
+  }
+}
+
+//---notifications-item__quantity---
+//----------------------------------
+.notifications-item__quantity {
+  position: absolute;
+  top: -7px;
+  right: -5px;
+  width: 14px;
+  height: 14px;
+
+  border-radius: 50%;
+
+  background: $notifications-item---quantity--type--comments-bg-col;
+
+  color: $notifications-item---quantity-col;
+  font-family: 'HelveticaNeueLTStd Bold';
+  font-size: 10px;
+  font-style: normal;
+  text-align: center;
+}
+
+//---notifications-item__comment---
+//---------------------------------
+.notifications-item_type_comment {
+  .notifications-item__quantity {
+    background: $notifications-item---quantity--type--comments-bg-col;
+  }
+}
+
+//---notifications-item__email---
+//-------------------------------
+.notifications-item_type_email {
+  .notifications-item__quantity {
+    background: $notifications-item---quantity--type--mail-bg-col;
+  }
+}

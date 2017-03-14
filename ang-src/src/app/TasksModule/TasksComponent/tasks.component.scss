@@ -1,0 +1,217 @@
+@import '../../../../assets/scss/utils/colors';
+
+$tasks-bar-bg-col: color(gallery);
+$tasks-bar---heading-col: color(ebony-clay);
+$tasks-bar---controls-col: color(tuna);
+$tasks-bar---add-task-after-col: color(white-col);
+$tasks-tags---tag: color(dove-gran);
+$tasks-tags---tag--col--active: $tasks-bar---heading-col;
+
+$tasks-deletion---button-col: color(white-col);
+$tasks-deletion---button--for--delete-bg-col: color(sunset-orange);
+$tasks-deletion---button--for--cancel-bg-col: color(mantis);
+
+$tasks-deletion---button--for--delete-disabled: color(silver-col);
+
+//---tasks-area---
+//----------------
+.tasks-area {
+  position: relative;
+
+  > * {
+    transition: filter .2s;
+  }
+}
+
+.tasks-area_content_blurred {
+  > * {
+    filter: blur(10px);
+  }
+
+  .add-item {
+    filter: blur(0);
+  }
+}
+
+//---tasks-bar---
+//---------------
+.tasks-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+  padding: 0 39px;
+
+  background: $tasks-bar-bg-col;
+}
+
+//---tasks-bar__heading---
+//------------------------
+.tasks-bar__heading {
+  margin: 0;
+  padding: 0;
+
+  color: $tasks-bar---heading-col;
+  font-family: 'HelveticaNeueLTStd Bold';
+  font-size: 22px;
+}
+
+//---tasks-bar__controls---
+//-------------------------
+.tasks-bar__controls {
+  display: flex;
+  align-items: center;
+}
+
+//---tasks-bar__add-task,
+//tasks-bar__remove-task---
+//-------------------------
+.tasks-bar__add-task,
+.tasks-bar__remove-task {
+  position: relative;
+  margin-left: 12px;
+
+  color: $tasks-bar---controls-col;
+  font-size: 30px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  &:hover {
+    &::after {
+      display: block;
+
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    top: -13px;
+    right: 50%;
+    width: 66px;
+    padding: 3px;
+
+    transform: translateX(50%);
+    transition: visibility 0s, opacity .3s linear;
+
+    border-radius: 5px;
+
+    background: $tasks-bar---controls-col;
+
+    color: $tasks-bar---add-task-after-col;
+    font-size: 12px;
+    text-align: center;
+
+    content: 'Add task';
+
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+//---tasks-bar__remove-task---
+//----------------------------
+.tasks-bar__remove-task {
+  &::after {
+    width: 89px;
+
+    content: 'Remove tasks';
+  }
+}
+
+//---------tasksDeletion-----------
+
+//---tasks-deletion---
+//--------------------
+.tasks-deletion {
+  position: absolute;
+  top: 58px;
+  right: 0;
+
+  transition: opacity .5s;
+}
+
+//---tasks-deletion__button---
+//----------------------------
+.tasks-deletion__button {
+  border: 0;
+  border-radius: 4px;
+
+  color: $tasks-deletion---button-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 14px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+//---tasks-deletion__button_for_delete---
+//---------------------------------------
+.tasks-deletion__button_for_delete {
+  margin-right: 10px;
+
+  background: $tasks-deletion---button--for--delete-bg-col;
+
+  &:disabled {
+    background: $tasks-deletion---button--for--delete-disabled;
+
+    cursor: not-allowed;
+  }
+}
+
+//---tasks-deletion__button_for_cancel---
+//---------------------------------------
+.tasks-deletion__button_for_cancel {
+  background: $tasks-deletion---button--for--cancel-bg-col;
+}
+
+// ------------------tasks-tags---------------
+//---tasks-tags---
+//----------------
+.tasks-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 20px 39px;
+
+  > * {
+    margin-right: 35px;
+  }
+}
+
+//---tasks-tags__tag---
+//---------------------
+.tasks-tags__tag {
+  margin-bottom: 20px;
+
+  transition: all .3s;
+
+  color: $tasks-tags---tag;
+  font-family: 'HelveticaNeueLTStd Bold';
+  font-size: 14px;
+  line-height: 1;
+  text-transform: capitalize;
+
+  cursor: pointer;
+}
+
+.tasks-tags__tag_col_active {
+  color: $tasks-tags---tag--col--active;
+}
+
+//---------------------tasks-container------------
+//---tasks-container---
+//---------------------
+.tasks-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 30px 47px 34px;
+
+  @media (max-width: 1300px) {
+    justify-content: space-around;
+  }
+}

@@ -1,0 +1,27 @@
+.app-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 480px;
+  max-width: 1366px;
+  margin: 0 auto;
+}
+
+.content-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.app-header {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
+.app-aside {
+  position: relative;
+  z-index: 10;
+}
+
+.app-main {
+  flex-grow: 2;
+}

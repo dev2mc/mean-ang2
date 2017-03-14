@@ -1,0 +1,317 @@
+@import '../../../../assets/scss/utils/colors';
+
+$mail---data-container-bg-col: color(white-col);
+$mail---item-bg-col: color(alabaster-dark);
+$mail---item--bg--even-bg-col: color(white-col);
+$mail---item-checkbox-col: color(alto);
+$mail---item-starred: color(nobel);
+$mail---item-starred--is--true-col: color(casablanca);
+$mail---item-category-bg-col:color(nobel);
+$mail---item-category-col: color(alabaster);
+$mail---item-category--col--work: color(picton-blue);
+$mail---item-category--col--home: color(bittersweet);
+$mail---item-category--col--entertainment: color(java);
+$mail---item-category--col--poetry-bg-col: color(piper);
+$mail---item-category--col--games-bg-col: color(wisteria);
+$mail---item-sender-col: color(scorpion-dark);
+$mail---item-subject-col: color(scorpion-dark);
+
+//---mail__data-container---
+//--------------------------
+.mail__data-container {
+  padding: 38px 33px 56px 25px;
+
+  background: $mail---data-container-bg-col;
+}
+
+//---mail__item---
+//----------------
+.mail__item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px 12px 18px;
+
+  background: $mail---item-bg-col;
+
+  @media screen and (max-width: 600px) {
+    padding: 12px 0;
+  }
+}
+
+.mail__item_is_new {
+  .mail__item-sender,
+  .mail__item-subject,
+  .mail__item-content,
+  .mail__item-time {
+    font-family: 'HelveticaNeueLTStd Bold' !important;
+  }
+}
+
+//---mail__item_bg_even---
+//------------------------
+.mail__item_bg_even {
+  background: $mail---item--bg--even-bg-col;
+}
+
+.mail__item-category,
+.mail__item-sender,
+.mail__item-subject,
+.mail__item-content,
+.mail__item-time {
+  margin: 0;
+  padding: 0;
+
+  line-height: 1;
+}
+
+//---mail__item-checkbox---
+//-------------------------
+.mail__item-checkbox {
+  margin-right: 3.6%;
+
+  color: $mail---item-checkbox-col;
+  font-size: 26px;
+
+  cursor: pointer;
+
+  @media screen and (max-width: 600px) {
+    margin-right: 1.5%;
+
+    font-size: 23px;
+  }
+}
+
+//---mail__item-starred---
+//------------------------
+.mail__item-starred {
+  margin-right: 5.9%;
+
+  color: $mail---item-starred;
+  font-size: 25px;
+
+  cursor: pointer;
+
+  @media screen and (max-width: 600px) {
+    margin-right: 2%;
+
+    font-size: 22px;
+  }
+}
+
+//---mail__item-starred_is_true---
+//--------------------------------
+.mail__item-starred_is_true {
+  color: $mail---item-starred--is--true-col;
+}
+
+//---mail__item-category---
+//-------------------------
+.mail__item-category {
+  width: 64px;
+  margin-right: 3%;
+  padding: 6px 0;
+
+  border-radius: 4px;
+
+  background: $mail---item-category-bg-col;
+
+  color: $mail---item-category-col;
+  font-family: 'HelveticaNeueLTStd Light';
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+  text-transform: capitalize;
+
+  cursor: pointer;
+
+  @media screen and (max-width: 600px) {
+    margin-right: 2%;
+    font-size: 14px;
+  }
+}
+
+//---mail__item-category_col_work---
+//----------------------------------
+.mail__item-category_col_work {
+  background: $mail---item-category--col--work;
+}
+
+//---mail__item-category_col_home---
+//----------------------------------
+.mail__item-category_col_home {
+  background: $mail---item-category--col--home;
+}
+
+//---mail__item-category_col_entertainment---
+//-------------------------------------------
+.mail__item-category_col_entertainment {
+  background: $mail---item-category--col--entertainment;
+}
+
+//---mail__item-category_col_poetry---
+//------------------------------------
+.mail__item-category_col_poetry {
+  background: $mail---item-category--col--poetry-bg-col;
+}
+
+//---mail__item-category_col_games---
+//-----------------------------------
+.mail__item-category_col_games {
+  background: $mail---item-category--col--games-bg-col;
+}
+
+//---mail__item-sender---
+//-----------------------
+.mail__item-sender {
+  width: 14.9%;
+  margin-right: 1%;
+
+  color: $mail---item-sender-col;
+  font-family: 'HelveticaNeueLTStd Bold';
+  font-size: 16px;
+  text-transform: capitalize;
+
+  cursor: pointer;
+
+  @media screen and (max-width: 600px) {
+    margin-right: 4%;
+
+    font-size: 14px;
+  }
+}
+
+//---mail__item-subject---
+//---mail__item-content---
+//---mail__item-time------
+//------------------------
+.mail__item-subject,
+.mail__item-content,
+.mail__item-time {
+  color: $mail---item-subject-col;
+  font-family: 'HelveticaNeueLTStd Light';
+  font-size: 16px;
+
+  cursor: pointer;
+
+  @media screen and (max-width: 600px) {
+    font-size: 14px;
+  }
+}
+
+//---mail__item-subject---
+//------------------------
+.mail__item-subject {
+  width: 23.8%;
+  margin-right: 2%;
+
+  overflow: hidden;
+
+  @media screen and (max-width: 767px) {
+    width: 40%;
+  }
+}
+
+//---mail__item-content---
+//------------------------
+.mail__item-content {
+  position: relative;
+  width: 24%;
+  height: 16px;
+  margin-right: 2%;
+  padding-right: 10px;
+
+  overflow: hidden;
+
+  word-break: break-all;
+
+  &::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    content: '...';
+  }
+
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
+//---mail__item-time---
+//---------------------
+.mail__item-time {
+  margin-left: auto;
+}
+
+//---mail-list__show-info---
+//--------------------------
+$mail-list---show-info-bg-col: color(silver-col);
+
+.mail-list__show-info {
+  display: flex;
+  position: fixed;
+  top: 75px;
+  right: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 300px;
+  height: 150px;
+
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+
+  background: $mail-list---show-info-bg-col;
+
+  box-shadow: 0 0 10px $mail-list---show-info-bg-col;
+}
+
+//---mail-list__heading---
+//------------------------
+$mail-list---heading-text-col: color(ebony-clay);
+
+.mail-list__heading,
+.mail-list__option {
+  margin: 0;
+  margin-bottom: 7px;
+  padding: 0;
+
+  color: $mail-list---heading-text-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+//---mail-list__option---
+//-----------------------
+.mail-list__option {
+  font-size: 14px;
+
+  cursor: pointer;
+
+  &:hover {
+    outline: none;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+//---mail-list__btn---
+//--------------------
+$mail-list---btn-bg-col: color(gallery);
+$mail-list---btn-text-col: color(ebony-clay);
+
+.mail-list__btn {
+  padding: 3px 10px;
+
+  border: 0;
+
+  border-radius: 3px;
+
+  background: $mail-list---btn-bg-col;
+
+  color: $mail-list---btn-text-col;
+}

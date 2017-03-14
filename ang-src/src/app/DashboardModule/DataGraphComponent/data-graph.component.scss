@@ -1,0 +1,102 @@
+@import '../../../../assets/scss/utils/colors';
+
+$data-graph-bg-col: color(white-col);
+$data-graph---heading-col: color(silver-chalice);
+$data-graph---picture-container: color(wisteria);
+$data-graph---money-col: color(scorpion);
+$data-graph---description: color(boulder);
+
+//---data-graph---
+//----------------
+.data-graph {
+  width: 326px;
+
+  border-radius: 20px;
+
+  background: $data-graph-bg-col;
+}
+
+//---data-graph__heading-container---
+//-----------------------------------
+.data-graph__heading-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 49px;
+  padding: 0 27px 0 17px;
+}
+
+//---data-graph__heading---
+//-------------------------
+.data-graph__heading {
+  margin: 0;
+  padding: 0;
+
+  color: $data-graph---heading-col;
+  font-family: 'HelveticaNeueLTStd Light';
+  font-size: 18px;
+  line-height: 1;
+}
+
+@keyframes rotateDataGraphCog {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+//---notifications-widget__settings---
+//------------------------------------
+.data-graph__settings {
+  transition: all .5s;
+
+  color: $data-graph---heading-col;
+  font-size: 19px;
+
+  cursor: pointer;
+
+  &:hover {
+    animation: rotateDataGraphCog 1s linear infinite;
+  }
+}
+
+//---data-graph__picture-container---
+//-----------------------------------
+.data-graph__picture-container {
+  padding: 15px 29px 16px 18px;
+
+  background: $data-graph---picture-container;
+}
+
+//---data-graph__data---
+//----------------------
+.data-graph__data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 15px 43px 29px 19px;
+}
+
+//---data-graph__money---
+//-----------------------
+.data-graph__money {
+  margin: 0;
+  margin-bottom: 7px;
+  padding: 0;
+
+  color: $data-graph---money-col;
+  font-family: 'HelveticaNeueLTStd Bold';
+  font-size: 19px;
+  line-height: 1;
+}
+
+//---data-graph__description---
+//-----------------------------
+.data-graph__description {
+  margin: 0;
+  padding: 0;
+
+  color: $data-graph---description;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 14px;
+  line-height: 1;
+}

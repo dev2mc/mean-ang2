@@ -1,0 +1,247 @@
+@import '../../../../assets/scss/utils/colors';
+
+$compose-email-bg-col: color(white-col);
+$compose-email---controlls-bg-col: color(catskill-white);
+$compose-email---heading-col: color(ebony-clay);
+$compose-email---controll-col: $compose-email---heading-col;
+$compose-email---controll-icon-col: $compose-email---heading-col;
+$compose-email---input-container: color(silver-light);
+$compose-email---label-col: $compose-email---heading-col;
+$compose-email---label-bg-col: color(wild-sand-dark);
+$compose-email---from-col: $compose-email---heading-col;
+$compose-email---input-col: $compose-email---heading-col;
+$compose-email---content-container-bord-col: color(ship-cove-dark);
+$compose-email---content-col: $compose-email---heading-col;
+$compose-email---button-col: color(ebony-clay);
+$compose-email---button-bg-col: color(wild-sand-dark);
+$compose-email---button--mod--send-bg-col: color(congress-blue);
+$compose-email---button--mod--send-col: color(white-col);
+$compose-email---font-mod-bord-col: color(silver-light);
+$compose-email---font-icon-col: color(ebony-clay);
+$compose-email---font-size-list-bg-col: color(white-col);
+$compose-email---font-size-list-shadow-col: color(black-col);
+$compose-email---font-size-item-col: color(ebony-clay);
+$compose-email---font-size-item-bg-hover-col: color(wild-sand-dark);
+$compose-email---font-icon--is--active-shadow-col: color(black-col);
+$compose-email---font-icon--is--disabled: color(silver-col);
+$compose-email---select-textcol-list: $compose-email---font-size-list-shadow-col;
+$compose-email---select-textcol-list-bg-col: color(white-col);
+$compose-email---select-textcol-item--with--border: color(silver-col);
+
+//---compose-email---
+//-------------------
+.compose-email {
+  width: 100%;
+
+  background: $compose-email-bg-col;
+}
+
+//---compose-email__controlls---
+//------------------------------
+.compose-email__controlls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  padding: 0 30px;
+
+  background: $compose-email---controlls-bg-col;
+}
+
+//---compose-email__controlls-container---
+//----------------------------------------
+.compose-email__controlls-container {
+  > * {
+    margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+//---compose-email__heading---
+//----------------------------
+.compose-email__heading {
+  margin: 0;
+  padding: 0;
+
+  color: $compose-email---heading-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 16px;
+  line-height: 1;
+}
+
+//---compose-email__controll-icon---
+//----------------------------------
+.compose-email__controll {
+  color: $compose-email---controll-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 14px;
+  text-transform: capitalize;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+//---compose-email__controll-icon---
+//----------------------------------
+.compose-email__controll-icon {
+  color: $compose-email---controll-icon-col;
+  font-size: 16px;
+}
+
+//---compose-email__form---
+//-------------------------
+.compose-email__form {
+  padding: 26px 30px;
+}
+
+//---compose-email__input-container---
+//------------------------------------
+.compose-email__input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 13px;
+  padding: 0 10px 11px;
+
+  // border: 1px solid $compose-email---input-container;
+  border-bottom: 1px solid $compose-email---input-container;
+}
+
+//---compose-email__input-container_bord_none---
+//----------------------------------------------
+.compose-email__input-container_bord_none {
+  border: 0;
+}
+
+//---compose-email__input-container_margin_none---
+//------------------------------------------------
+.compose-email__input-container_margin_none {
+  margin-bottom: 0;
+}
+
+//---compose-email__label---
+//--------------------------
+.compose-email__label {
+  margin: 0;
+  margin-right: 11px;
+  padding: 0 16px;
+
+  background: $compose-email---label-bg-col;
+
+  color: $compose-email---label-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 14px;
+  line-height: 30px;
+  text-transform: capitalize;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+//---compose-email__from---
+//-------------------------
+.compose-email__from {
+  margin: 0;
+  padding: 0;
+
+  color: $compose-email---from-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 13px;
+  line-height: 1;
+  text-transform: lowercase;
+}
+
+//---compose-email__input---
+//--------------------------
+.compose-email__input {
+  flex-grow: 2;
+  height: 100%;
+  padding: 6px 0;
+
+  border: 0;
+
+  color: $compose-email---input-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 13px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    background: none;
+  }
+}
+
+//---compose-email__content-container---
+//--------------------------------------
+.compose-email__content-container {
+  // margin-bottom: 10px;
+  // padding: 0 10px 16px;
+  //
+  // border: solid 1px $compose-email---content-container-bord-col;
+}
+
+//---compose-email__content---
+//----------------------------
+.compose-email__content {
+  width: 100%;
+  min-height: 240px;
+  margin-bottom: 10px;
+  padding: 15px 10px 16px;
+
+  border: solid 1px $compose-email---content-container-bord-col;
+
+  color: $compose-email---content-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 14px;
+  word-break: break-all;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+//---compose-email__buttons---
+//----------------------------
+.compose-email__buttons {
+  > * {
+    margin-right: 5px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+//---compose-email__button---
+//---------------------------
+.compose-email__button {
+  padding: 0 21px;
+
+  border: 0;
+
+  background: $compose-email---button-bg-col;
+
+  color: $compose-email---button-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 15px;
+  line-height: 30px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    background: gray;
+    cursor: not-allowed;
+  }
+}
+
+.compose-email__button_mod_send {
+  background: $compose-email---button--mod--send-bg-col;
+
+  color: $compose-email---button--mod--send-col;
+}

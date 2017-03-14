@@ -1,0 +1,148 @@
+@import '../../../../assets/scss/utils/colors';
+
+$search---input-bg-col: color(tuna);
+$search---input-col: color(white-col);
+$search---submit-bg-col: $search---input-bg-col;
+$search---icon-col: color(storm-gray);
+$search---label-col: $search---icon-col;
+
+$search-width: 100%;
+
+//---search---
+//------------
+.search {
+  position: relative;
+  width: $search-width;
+}
+
+//---search__form_device_mob---
+//-----------------------------
+.search__form_device_mob {
+  display: none;
+}
+
+//width of submit button and values used for padding-right in search__input
+$search---submit-width: 62px;
+
+//---search__input---
+//-------------------
+$search---input-height: 40px;
+$search---input-bord-rad: 4px;
+
+.search__input {
+  width: $search-width;
+  height: $search---input-height;
+  margin: 0;
+  padding: 0 #{$search---submit-width} 0 20px;
+
+  border: 0;
+  border-radius: $search---input-bord-rad;
+
+  background: $search---input-bg-col;
+
+  color: $search---input-col;
+  font-family: 'HelveticaNeueLTStd Light';
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.search__input_device_mob {
+  position: absolute;
+  top: 51px;
+  left: 0;
+  // width: calc(100vw - 181px);
+  width: calc(100vw - 181px);
+  padding: 0 20px;
+
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+
+  z-index: 100;
+
+  @media (max-width: 480px) {
+    width: calc(480px - 181px);
+  }
+}
+
+.search__input_is_hidden {
+  display: none;
+}
+
+.search__input_is_visible {
+  display: block;
+}
+
+//---search__submit---
+//--------------------
+.search__submit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: $search---submit-width;
+  height: $search---input-height;
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+  border-top-right-radius: $search---input-bord-rad;
+  border-bottom-right-radius: $search---input-bord-rad;
+
+  background: $search---input-bg-col;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+//---search__icon---
+//------------------
+.search__icon {
+  color: $search---icon-col;
+  font-size: 20px;
+}
+
+//---search__show-mob---
+//----------------------
+.search__show-mob {
+  width: 90px;
+  height: $search---input-height;
+  margin: 0;
+  margin-left: auto;
+  padding: 0;
+
+  border: 0;
+  border-radius: $search---input-bord-rad;
+
+  background: $search---input-bg-col;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+//---search__label---
+//-------------------
+.search__label {
+  color: $search---label-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 12px;
+}
+
+//styles for mobile version
+//-------------------------
+
+@media (max-width: 600px) {
+  .search {
+    // background: red;
+  }
+
+  .search__form {
+    display: none;
+  }
+
+  .search__form_device_mob {
+    display: flex;
+  }
+}

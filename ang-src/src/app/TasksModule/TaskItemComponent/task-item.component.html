@@ -1,0 +1,7 @@
+<div class="task-item task-item_bg_{{color}}" [@inOut]="'in'">
+  <h3 class="task-item__name">{{item.name}}</h3>
+  <p class="task-item__tag">{{item.tag}}</p>
+  <p class="task-item__description">{{item.description}}</p>
+  <i class="fa fa-star task-item__favorite" [class.task-item__favorite_is_active]='item.favorite' aria-hidden="true" (click)="update(item._id)"></i>
+  <i class="fa" [class.fa-check-square-o]='delitems.indexOf(item._id) > -1' [class.fa-square-o]='delitems.indexOf(item._id) === -1' [class.task-item__delete]='true' aria-hidden="true" (click)='delete(item._id)' *ngIf='showdel'></i>
+</div>

@@ -1,0 +1,159 @@
+@import '../../../../assets/scss/utils/colors';
+
+$yearly-sales---graph-bg-col: color(mantis);
+$yearly-sales---heading-col: color(white-col);
+$yearly-sales---data: color(white-col);
+$yearly-sales---sum-col: color(silver-col);
+$yearly-sales---description-col: color(silver-col);
+$yearly-sales---line-container: color(mercury);
+$yearly-sales---line: color(dove-gran);
+$yearly-sales---sum--col--sales: color(saffron-mango);
+$yearly-sales---sum--col--visitors: color(mantis);
+$yearly-sales---sum--col--customers: color(downy);
+
+//---yearly-sales---
+//------------------
+.yearly-sales {
+  width: 325px;
+}
+
+//---yearly-sales__graph---
+//-------------------------
+$yearly-sales-bord-rad: 6px;
+
+.yearly-sales__graph {
+  padding: 16px 18px 8px;
+
+  border-top-left-radius: $yearly-sales-bord-rad;
+  border-top-right-radius: $yearly-sales-bord-rad;
+
+  background: $yearly-sales---graph-bg-col;
+}
+
+//---yearly-sales__heading---
+//---------------------------
+.yearly-sales__heading {
+  margin: 0;
+  margin-bottom: 13px;
+  padding: 0;
+
+  color: $yearly-sales---heading-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 18px;
+  line-height: 1;
+}
+
+//---yearly-sales__image-container---
+//-----------------------------------
+.yearly-sales__image-container {
+  display: flex;
+  justify-content: center;
+}
+
+//---yearly-sales__data---
+//------------------------
+.yearly-sales__data {
+  padding: 21px 28px 23px 25px;
+
+  background: $yearly-sales---data;
+
+  > * {
+    margin-bottom: 20px;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+//---yearly-sales__sum---
+//-----------------------
+.yearly-sales__sum {
+  margin: 0;
+  margin-bottom: 6px;
+  padding: 0;
+
+  color: $yearly-sales---sum-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 21px;
+  line-height: 1;
+}
+
+//---yearly-sales__sum_col_sales---
+//---------------------------------
+.yearly-sales__sum_col_sales {
+  color: $yearly-sales---sum--col--sales;
+}
+
+//---yearly-sales__sum_col_visitors---
+//------------------------------------
+.yearly-sales__sum_col_visitors {
+  color: $yearly-sales---sum--col--visitors;
+}
+
+//---yearly-sales__sum_col_customers---
+//-------------------------------------
+.yearly-sales__sum_col_customers {
+  color: $yearly-sales---sum--col--customers;
+}
+
+//---yearly-sales__description---
+//-------------------------------
+.yearly-sales__description {
+  margin: 0;
+  margin-bottom: 8px;
+  padding: 0;
+
+  color: $yearly-sales---description-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 13px;
+  line-height: 1;
+}
+
+//---yearly-sales__line-container---
+//----------------------------------
+.yearly-sales__line-container {
+  position: relative;
+  width: 100%;
+  height: 8px;
+
+  border-radius: 10px;
+  background: $yearly-sales---line-container;
+}
+
+//---yearly-sales__line---
+//------------------------
+.yearly-sales__line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 8px;
+
+  border-radius: 10px;
+  background: $yearly-sales---line;
+}
+
+//---yearly-sales__line_col_sales---
+//----------------------------------
+.yearly-sales__line_col_sales {
+  width: 62%;
+
+  background: $yearly-sales---sum--col--sales;
+}
+
+//---yearly-sales__line_col_visitors---
+//-------------------------------------
+.yearly-sales__line_col_visitors {
+  width: 50%;
+
+  background: $yearly-sales---sum--col--visitors;
+}
+
+//---yearly-sales__line_col_visitors---
+//-------------------------------------
+.yearly-sales__line_col_customers {
+  width: 83%;
+
+  background: $yearly-sales---sum--col--customers;
+}

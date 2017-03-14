@@ -1,0 +1,19 @@
+<div class="view-mail">
+  <h3 class="view-mail__heading">{{mailItem.subject}}</h3>
+  <div class="view-mail__controlls">
+    <div class="view-mail__info">
+      <p class="view-mail__sender">{{mailItem.fromName}}</p>
+      <p class="view-mail__address">{{mailItem.fromAddress}}</p>
+      <p class="view-mail__data">{{getMailTime(mailItem.date)}}</p>
+    </div>
+
+    <span class="view-mail__respond" *ngIf='mailItem.fromName!=="you"' [routerLink]="['/composeemail', mailItem._id]">Respond</span>
+    <span class="view-mail__respond" *ngIf='mailItem.fromName==="you"' (click)='resentMail()'>Resend</span>
+  </div>
+  <p class="view-mail__category">Category: {{mailItem.category}}</p>
+  <p class="view-mail__body" [innerHTML]='mailItem.body'></p>
+  <button class="view-mail__star" (click)='toggleStarred()'><span *ngIf='mailItem.starred'>Unstar email</span><span *ngIf='!mailItem.starred'>Star email</span></button>
+  <button class="view-mail__star" (click)='deleteMail(mailItem._id)'>Delete Mail</button>
+  <button class="view-mail__star" (click)='toggleRead()'>{{mailItem.read ? 'Mark As Unread' : 'Mark As Read'}}</button>
+  <button class="view-mail__back" (click)='goBack()'>back</button>
+</div>

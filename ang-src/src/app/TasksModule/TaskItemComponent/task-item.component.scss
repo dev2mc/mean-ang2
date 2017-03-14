@@ -1,0 +1,161 @@
+@import '../../../../assets/scss/utils/colors';
+
+//---------------------tasks-item------------
+$task-item-bg-col-temp: color(ship-cove);
+$task-item---name-col: color(wild-sand);
+$task-item---tag-col: $task-item---name-col;
+$task-item---description-col: $task-item---name-col;
+$task-item---favorite-col: color(ebony-clay);
+$task-item---favorite--is--active: color(golden-tainoi);
+
+//---task-item---
+//---------------
+.task-item {
+  position: relative;
+  width: 304px;
+  height: 184px;
+  margin-bottom: 34px;
+  padding: 26px 30px 0 18px;
+
+  border-radius: 4px;
+
+  background: $task-item-bg-col-temp;
+}
+
+//---task-item__name---
+//---------------------
+.task-item__name {
+  margin: 0;
+  margin-bottom: 7px;
+  padding: 0;
+
+  color: $task-item---name-col;
+  font-family: 'HelveticaNeueLTStd Bold';
+  font-size: 26px;
+  line-height: 1;
+  text-transform: capitalize;
+}
+
+//---task-item__tag----
+//---------------------
+.task-item__tag {
+  margin: 0;
+  margin-bottom: 27px;
+  padding: 0;
+
+  color: $task-item---tag-col;
+  font-family: 'HelveticaNeueLTStd Light';
+  font-size: 18px;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-transform: capitalize;
+}
+
+//---task-item__description---
+//----------------------------
+.task-item__description {
+  margin: 0;
+  padding: 0;
+
+  color: $task-item---description-col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 12px;
+}
+
+//---task-item__favorite---
+//-------------------------
+.task-item__favorite {
+  position: absolute;
+  top: 27px;
+  right: 38px;
+
+  color: rgba($task-item---favorite-col, .6);
+  font-size: 30px !important;
+
+  cursor: pointer;
+}
+
+//---task-item__favorite_is_active---
+//-----------------------------------
+.task-item__favorite_is_active {
+  color: $task-item---favorite--is--active;
+}
+
+//---task-item__favorite_is_active---
+//-----------------------------------
+.task-item__delete {
+  position: absolute;
+  top: -29px;
+  right: -26px;
+
+  color: rgba($task-item---favorite-col, .6);
+  font-size: 38px !important;
+
+  cursor: pointer;
+}
+
+.fa-check-square-o {
+  transform: translateX(6px);
+}
+
+//different backgrounds for task items:
+$task--item-bg-shipcove: color(ship-cove);
+$task--item-bg-cornflowerblue: color(cornflower-blue);
+$task--item-bg-saffronmango: color(saffron-mango);
+$task--item-bg-wisteria: color(wisteria);
+$task--item-bg-sunsetorange: color(sunset-orange);
+$task--item-bg-bermuda: color(bermuda);
+$task--item-bg-sunglow: color(sunglow);
+$task--item-bg-java: color(java);
+$task--item-bg-mantis: color(mantis);
+
+.task-item_bg_shipcove {
+  background: $task--item-bg-shipcove;
+}
+
+.task-item_bg_cornflowerblue {
+  background: $task--item-bg-cornflowerblue;
+}
+
+.task-item_bg_saffronmango {
+  background: $task--item-bg-saffronmango;
+}
+
+.task-item_bg_wisteria {
+  background: $task--item-bg-wisteria;
+}
+
+.task-item_bg_sunsetorange {
+  background: $task--item-bg-sunsetorange;
+}
+
+.task-item_bg_bermuda {
+  background: $task--item-bg-bermuda;
+}
+
+.task-item_bg_sunglow {
+  background: $task--item-bg-sunglow;
+}
+
+.task-item_bg_java {
+  background: $task--item-bg-java;
+}
+
+.task-item_bg_mantis {
+  background: $task--item-bg-mantis;
+}
+
+//----------styles for animations-------
+.task-element.ng-enter {
+  transition: all .5s linear;
+  opacity: 0;
+
+  &.ng-enter-active {
+    opacity: 1;
+  }
+}
+
+.task-element.ng-leave {
+  transition: all .5s linear;
+  opacity: 0;
+}

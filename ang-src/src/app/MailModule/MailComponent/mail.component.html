@@ -1,0 +1,24 @@
+<div class="mail">
+  <div class="mail__controlls">
+    <h3 class="mail__heading"><span class="mail__heading_fweight_bold">Mail</span>box</h3>
+  </div>
+  <div class="mail__container">
+    <div class="mail__compose-compilation">
+      <span class="mail__compose" routerLink='/composeemail/none'>compose</span>
+      <div class="mail__pagination-container" *ngIf='!!list.mailsCount'>
+        <div class="mail__count"><span class="mail__count_fweight_bold">{{list.splitMailsArr[list.currentCount].length + ((list.currentCount)*20)}}</span> of <span class="mail__count_fweight_bold">{{list.mailsCount}}</span></div>
+        <div class="mail__pagination">
+          <i class="fa fa-chevron-left mail__pagination-item mail__pagination-item_pos_prev" aria-hidden="true" (click)='list.prevMails()'></i>
+          <i class="fa fa-chevron-right mail__pagination-item mail__pagination-item_pos_next" aria-hidden="true"  (click)='list.nextMails()'></i>
+        </div>
+      </div>
+    </div>
+    <div class="mail__tabs">
+      <p class="mail__tab" [class.mail__tab_is_active]='type==="inbox"' (click)='changeMailType("inbox")'><i class="fa fa-inbox mail__tab-icon" aria-hidden="true"></i>Inbox</p>
+      <p class="mail__tab" [class.mail__tab_is_active]='type==="sent"' (click)='changeMailType("sent")'><i class="fa fa-paper-plane mail__tab-icon" aria-hidden="true"></i>Sent</p>
+      <p class="mail__tab" [class.mail__tab_is_active]='type==="starred"' (click)='changeMailType("starred")'><i class="fa fa-star mail__tab-icon" aria-hidden="true"></i>Starred</p>
+    </div>
+
+    <mail-list [type]='type' #list></mail-list>
+  </div>
+</div>

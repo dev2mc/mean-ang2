@@ -1,0 +1,84 @@
+@import '../../../../assets/scss/utils/colors';
+
+$weather-bg-col: color(scooter);
+$weather-text-col: color(white-col);
+
+//---weather---
+//-------------
+.weather {
+  display: flex;
+  align-items: center;
+  width: 324px;
+  height: 108px;
+  padding: 0 18px;
+
+  border-radius: 6px;
+
+  background: $weather-bg-col;
+
+  > * {
+    margin-right: 22px;
+  }
+
+  > *:last-child {
+    margin-right: 0;
+  }
+}
+
+//---weather__icon---
+//-------------------
+.weather__icon {
+  color: $weather-text-col;
+  font-size: 66px;
+  line-height: 1;
+}
+
+//---weather__temperature---
+//--------------------------
+.weather__temperature {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  padding-right: 15px;
+
+  color: $weather-text-col;
+  font-size: 58px;
+  line-height: 1;
+}
+
+//---weather__celsius---
+//----------------------
+.weather__celsius {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  font-size: 30px;
+}
+
+//---weather__location---
+//---weather__weather----
+//-----------------------
+.weather__location,
+.weather__weather {
+  margin: 0;
+  padding: 0;
+
+  color: $weather-text-col;
+  font-family: 'HelveticaNeueLTStd Bold';
+  font-size: 16px;
+
+  line-height: 1;
+  text-transform: capitalize;
+}
+
+//---weather__location---
+//-----------------------
+.weather__location {
+  margin-bottom: 7px;
+}
+
+//---weather__weather---
+//----------------------
+.weather__weather {
+  font-size: 15px;
+}
