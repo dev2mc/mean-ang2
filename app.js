@@ -46,7 +46,7 @@ require('./config/passport')(passport);
 //routes
 require('./routes/users')(app);
 
-// require('./routes/todos')(app);
+require('./routes/todos')(app);
 
 require('./routes/tasks')(app);
 

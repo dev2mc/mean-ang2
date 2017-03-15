@@ -1,69 +1,118 @@
-const Todo = require('../models/todo');
+const passport = require('passport');
+const User = require('../models/user');
+const generateId = require('../utils/generateId.js');
 
 module.exports = (app) => {
 
-  app.get('/todos', (req, res) => {
-    Todo.find({}, (err, todos) => {
-      if (err) {
+  app.get('/todos', passport.authenticate('jwt', {session:false}), (req, res) => {
+    let id = req.user;
+
+    User.getUserById(id, (err, user) => {
+
+      if(err){
         console.error(err);
-        res.json({msg: `error: ${err}`, data: null});
+        res.json({msg: `error: ${err.message}`, data: null});
       }
-      if (todos) {
-        res.json({msg: 'success', data: todos});
+
+      if(user){
+        let tasks = user.todos;
+        res.json({msg: 'success', data: tasks});
+      } else {
+        res.json({msg: `error: no user`, data: null});
       }
     });
   });
 
-  app.post('/todos', (req, res) => {
-    let newTodo = new Todo(req.body);
-    newTodo.save((err, data) => {
-      if (err) {
+  app.post('/todos', passport.authenticate('jwt', {session:false}), (req, res) => {
+    let id = req.user;
+    let newTodo = req.body;
+    newTodo._id = generateId();
+
+    User.getUserById(id, (err, user) => {
+      if(err){
         console.error(err);
-        res.json({msg: `error: ${err}`, data: null});
+        res.json({msg: `error: ${err.message}`, data: null});
       }
 
-      if (data) {
-        res.json({msg: 'success', data: data});
-      } else {
-        res.json({msg: `error`, data: null});
-      }
-    });
-  });
+      if(user) {
+        user.todos.push(newTodo);
 
-  app.delete('/todos/:id', (req, res) => {
-    let id = req.params.id;
+        user.save(function (err) {
+          if (err) {
+            console.log(err);
+            res.json({msg: `error: ${err.message}`, data: null});
+          }
 
-    Todo.findByIdAndRemove(id, (err, data) => {
-      if (err) {
-        console.error(`Error: ${err}`);
-        res.json({msg: `error: ${err}`, data: null});
-      }
+          let newTodoAdded = user.todos.id(newTodo._id);
 
-      if (data) {
-        res.json({msg: 'success', data: data});
-      } else {
-        res.json({msg: `error`, data: null});
+          if(newTodoAdded) {
+            res.json({msg: 'success', data: newTodoAdded});
+          } else {
+            res.json({msg: `error`, data: null});
+          }
+        });
       }
     });
   });
 
-  app.put('/todos/:id', (req, res) => {
-    let id = req.params.id;
+  app.put('/todos/:id', passport.authenticate('jwt', {session:false}), (req, res) => {
+    let id = req.user;
+    let todoId = req.params.id;
+    let updatedTodo = req.body;
 
-    let data = req.body;
-
-    Todo.findByIdAndUpdate(id, data, {new: true}, (err, todo) => {
-      if (err) {
+    User.getUserById(id, (err, user) => {
+      if(err){
         console.error(err);
-        res.json({msg: `error: ${err}`, data: null});
+        res.json({msg: `error: ${err.message}`, data: null});
       }
 
-      if (todo) {
-        res.json({msg: 'success', data: todo});
-      } else {
-        res.json({msg: `error`, data: null});
+      if(user) {
+        user.todos.id(todoId).remove();
+        user.todos.push(updatedTodo);
+
+        user.save(function (err) {
+          if (err) {
+            console.log(err);
+            res.json({msg: `error: ${err.message}`, data: null});
+          }
+
+          let updatedTodoDown = user.todos.id(todoId);
+
+          if(updatedTodoDown) {
+            res.json({msg: 'success', data: updatedTodoDown});
+          } else {
+            res.json({msg: `error`, data: null});
+          }
+        });
       }
     });
   });
 
+  app.delete('/todos/:id', passport.authenticate('jwt', {session:false}), (req, res) => {
+    let id = req.user;
+    let todoId = req.params.id;
+    let deletedTodo = {};
+
+    User.getUserById(id, (err, user) => {
+      if(err){
+        console.error(err);
+        res.json({msg: `error: ${err.message}`, data: null});
+      }
+
+      if(user) {
+        deletedTodo = user.todos.id(todoId);
+
+        user.todos.id(todoId).remove();
+      }
+
+      user.save((err) =>{
+        if (err) {
+          console.log(err);
+          res.json({msg: `error: ${err.message}`, data: null});
+        }
+
+        res.json({msg: 'success', data: deletedTodo});
+      });
+    });
+  });
 };
