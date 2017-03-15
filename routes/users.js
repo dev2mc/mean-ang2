@@ -5,7 +5,7 @@ const User = require('../models/user');
 
 module.exports = (app) => {
   // Register
-  app.post('/register', (req, res, next) => {
+  app.post('/register', (req, res) => {
     let newUser = new User({
       name: req.body.name,
       email: req.body.email,
@@ -27,7 +27,7 @@ module.exports = (app) => {
   });
 
   // Authenticate
-  app.post('/authenticate', (req, res, next) => {
+  app.post('/authenticate', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
@@ -40,7 +40,15 @@ module.exports = (app) => {
       User.comparePassword(password, user.password, (err, isMatch) => {
         if(err) {throw err;}
         if(isMatch){
-          const token = jwt.sign(user, config.secret, {
+          let tokenUser = {};
+          tokenUser.username = user.username;
+          tokenUser.password = user.password;
+          tokenUser.name = user.name;
+          tokenUser._id = '' + user._id;
+
+          // console.log(tokenUser);
+
+          const token = jwt.sign(tokenUser, config.secret, {
             expiresIn: 604800 // 1 week
           });
 
@@ -62,7 +70,7 @@ module.exports = (app) => {
   });
 
   // Profile
-  app.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
+  app.get('/profile', passport.authenticate('jwt', {session:false}), (req, res) => {
     // console.log(req);
     res.json({_id: req.user});
   });

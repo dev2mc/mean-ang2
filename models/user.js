@@ -38,11 +38,8 @@ const UserSchema = new Schema({
   email: String,
   username: String,
   password: String,
-  // tasks: { type : Array , 'default': [] },
   tasks: [tasksSchema],
-  // todos: { type : Array , 'default': [] },
   todos: [todosSchema],
-  // mails: { type : Array , 'default': [] }
   mails: [mailsSchema]
 });
 
@@ -53,7 +50,7 @@ module.exports.getUserById = function(id, callback){
 };
 
 module.exports.getUserByUsername = function(username, callback){
-  const query = {username: username}
+  const query = {username: username};
   User.findOne(query, callback);
 };
 
