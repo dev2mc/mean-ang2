@@ -7,11 +7,11 @@ let styles = require('./app.component.scss');
   selector: 'my-app',
   template: `
     <div class='app-wrapper'>
-      <header class='app-header'>
+      <header class='app-header' [hidden]='true'>
         <topbar></topbar>
       </header>
       <div class='content-wrapper'>
-        <aside class='app-aside'>
+        <aside class='app-aside' [hidden]='true'>
           <menubar></menubar>
         </aside>
         <main class='app-main'>

@@ -12,6 +12,7 @@ import {MailModule} from './MailModule/mail.module';
 
 import {AppComponent} from './app.component';
 import {NotFoundComponent} from './shared/404Component/404.component';
+import {LoginComponent} from './shared/LoginComponent/login.component';
 
 import {DocumentRefService} from './shared/DocumentRefService/document-ref.service';
 
@@ -31,7 +32,8 @@ import {DocumentRefService} from './shared/DocumentRefService/document-ref.servi
   providers: [DocumentRefService],
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LoginComponent
   ],
   bootstrap: [ AppComponent ]
 })

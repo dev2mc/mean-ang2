@@ -4,17 +4,28 @@ import {Routes, RouterModule} from '@angular/router';
 import {TasksComponent} from './TasksModule/TasksComponent/tasks.component';
 import {DashboardComponent} from './DashboardModule/DashboardComponent/dashboard.component';
 import {MailComponent} from './MailModule/MailComponent/mail.component';
-import {NotFoundComponent} from './shared/404Component/404.component';
 import {ViewMailComponent} from './MailModule/ViewMailComponent/view-mail.component';
 import {ComposeEmailComponent} from './MailModule/ComposeEmailComponent/compose-email.component';
+
+import {NotFoundComponent} from './shared/404Component/404.component';
+import {LoginComponent} from './shared/LoginComponent/login.component';
 
 import {ViewMailResolveService} from './shared/ViewMailResolveService/view-mail-resolve.service';
 
 const appRoutes: Routes = [
+  // {
+  //   path: '',
+  //   redirectTo: '/dashboard',
+  //   pathMatch: 'full'
+  // },
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/login',
     pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'dashboard',

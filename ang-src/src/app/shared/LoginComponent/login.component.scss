@@ -1,0 +1,47 @@
+@import '../../../../assets/scss/utils/colors';
+
+$login___heading_col: color(ebony-clay);
+$login___label_col: color(ebony-clay);
+
+.login-container {
+  width: 100%;
+  padding: 300px 0;
+}
+
+.login {
+  display: block;
+  width: 480px;
+  padding: 20px;
+
+  margin: 0 auto;
+
+  background: green;
+}
+
+.login__heading {
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 0;
+
+  color: $login___heading_col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 20px;
+  line-height: 1;
+}
+
+.login__label {
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 0;
+
+  color: $login___label_col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 14px;
+  line-height: 1;
+}
+
+.login__form {
+  & > .login__input-container {
+    margin-bottom: 15px;
+  }
+}
