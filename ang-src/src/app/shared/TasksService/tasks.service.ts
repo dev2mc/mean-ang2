@@ -8,12 +8,21 @@ import {Task} from '../TaskObjInterface/task-obj.interface';
 @Injectable()
 export class TasksService {
   private _uri = 'http://localhost:3000/tasks';
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers(
+    {
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    }
+  );
 
   constructor(private http: Http){};
 
+  getToken() {
+    return localStorage.getItem('id_token');
+  }
+
   getTasks(): Promise<Task[]> {
-    return this.http.get(`${this._uri}`)
+    return this.http.get(`${this._uri}`, {headers: this.headers})
       .toPromise()
       .then((response: any) => {
         let resObj = JSON.parse(response._body);

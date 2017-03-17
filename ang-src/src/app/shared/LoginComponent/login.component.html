@@ -1,21 +1,21 @@
 <div class="login-container">
   <div class="login">
     <p class="login__heading">Please insert your username and password</p>
-    <form class="login__form" novalidate>
+    <form class="login__form" novalidate name='login-form'>
       <div class="login__input-container">
         <label>
           <p class="login__label">Username:</p>
-          <input class="login__input" type="text">
+          <input class="login__input" type="text" [(ngModel)]="username" name="user">
         </label>
-        <div class="login__input-container">
+      </div>
+      <div class="login__input-container">
         <label>
           <p class="login__label">Password:</p>
-          <input class="login__input" type="text">
+          <input class="login__input" type="password" [(ngModel)]="password" name="pass">
         </label>
       </div>
-      </div>
       <div class="login__button-container">
-        <button class="login__button">Login</button>
+        <button class="login__button" (click)='onLoginSubmit();$event.preventDefault()'>Login</button>
         <button class="login__button">Register</button>
       </div>
     </form>

@@ -12,6 +12,8 @@ import {LoginComponent} from './shared/LoginComponent/login.component';
 
 import {ViewMailResolveService} from './shared/ViewMailResolveService/view-mail-resolve.service';
 
+import {AuthGuard} from './guards/AuthGuard/auth.guard';
+
 const appRoutes: Routes = [
   // {
   //   path: '',
@@ -29,34 +31,41 @@ const appRoutes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'tasks',
-    component: TasksComponent
+    component: TasksComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'mail',
-    component: MailComponent
+    component: MailComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'composeemail/:id',
-    component: ComposeEmailComponent
+    component: ComposeEmailComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'viewmail/:id',
     component: ViewMailComponent,
     resolve: {
       mailItem: ViewMailResolveService
-    }
+    },
+    canActivate:[AuthGuard]
   },
   {
     path: '404',
-    component: NotFoundComponent
+    component: NotFoundComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: '**',
-    redirectTo: '/404'
+    redirectTo: '/404',
+    canActivate:[AuthGuard]
   }
 ];
 

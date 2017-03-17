@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import {routing} from './app.routing';
@@ -15,11 +16,19 @@ import {NotFoundComponent} from './shared/404Component/404.component';
 import {LoginComponent} from './shared/LoginComponent/login.component';
 
 import {DocumentRefService} from './shared/DocumentRefService/document-ref.service';
+import {AuthService} from './shared/AuthService/auth.service';
+
+import {AuthGuard} from  './guards/AuthGuard/auth.guard';
+
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 @NgModule({
   imports: [
+    FlashMessagesModule,
+
     BrowserModule,
     CommonModule,
+    FormsModule,
 
     routing,
 
@@ -29,7 +38,11 @@ import {DocumentRefService} from './shared/DocumentRefService/document-ref.servi
     DashboardModule,
     MailModule
   ],
-  providers: [DocumentRefService],
+  providers: [
+    DocumentRefService,
+    AuthService,
+    AuthGuard
+    ],
   declarations: [
     AppComponent,
     NotFoundComponent,

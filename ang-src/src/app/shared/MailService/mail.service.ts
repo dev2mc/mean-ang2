@@ -8,12 +8,21 @@ import {Mail} from '../MailObjInterface/mail-obj.interface';
 @Injectable()
 export class MailService {
   private _uri = 'http://localhost:3000/mails';
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers(
+    {
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    }
+  );
 
   constructor(private http: Http){};
 
+  getToken() {
+    return localStorage.getItem('id_token');
+  }
+
   getMails(): Promise<Mail[]> {
-    return this.http.get(`${this._uri}`)
+    return this.http.get(`${this._uri}`, {headers: this.headers})
       .toPromise()
       .then((response: any) => {
         let resObj = JSON.parse(response._body);

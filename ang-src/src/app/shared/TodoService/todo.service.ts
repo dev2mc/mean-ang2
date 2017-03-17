@@ -8,12 +8,21 @@ import {Todo} from '../TodoObjInterface/todo-obj.interface';
 @Injectable()
 export class TodoService {
   private _uri = 'http://localhost:3000/todos';
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers(
+    {
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    }
+  );
 
   constructor(private http: Http){};
 
+  getToken() {
+    return localStorage.getItem('id_token');
+  }
+
   getTodos(): Promise<Todo[]> {
-    return this.http.get(`${this._uri}`)
+    return this.http.get(`${this._uri}`, {headers: this.headers})
       .toPromise()
       .then((response: any) => {
         let resObj = JSON.parse(response._body);

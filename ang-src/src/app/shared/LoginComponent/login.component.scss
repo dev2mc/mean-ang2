@@ -2,6 +2,7 @@
 
 $login___heading_col: color(ebony-clay);
 $login___label_col: color(ebony-clay);
+$login_bg_col: color(gallery);
 
 .login-container {
   width: 100%;
@@ -11,16 +12,17 @@ $login___label_col: color(ebony-clay);
 .login {
   display: block;
   width: 480px;
-  padding: 20px;
-
+  padding: 40px;
   margin: 0 auto;
 
-  background: green;
+  border-radius: 10px;
+
+  background: $login_bg_col;
 }
 
 .login__heading {
   margin: 0;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   padding: 0;
 
   color: $login___heading_col;
@@ -42,6 +44,6 @@ $login___label_col: color(ebony-clay);
 
 .login__form {
   & > .login__input-container {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 }
