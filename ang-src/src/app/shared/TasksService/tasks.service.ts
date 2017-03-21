@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Headers, Http} from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -51,6 +51,15 @@ export class TasksService {
 
   deleteTask(id: string): Promise<Task> {
     return this.http.delete(`${this._uri}/${id}`, {headers: this.headers})
+      .toPromise()
+      .then((response: any) => {
+        let resObj = JSON.parse(response._body);
+        return resObj.data;
+      });
+  };
+
+  deleteMultipleTasks(idArr: string[]): Promise<Task> {
+    return this.http.delete(`${this._uri}/multiple`, new RequestOptions({headers: this.headers, body: JSON.stringify(idArr)}))
       .toPromise()
       .then((response: any) => {
         let resObj = JSON.parse(response._body);

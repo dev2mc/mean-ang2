@@ -55,33 +55,70 @@ module.exports = (app) => {
     });
   });
 
+
   app.delete('/tasks/:id', passport.authenticate('jwt', {session:false}), (req, res) => {
-    let id = req.user;
+
     let taskId = req.params.id;
-    let deletedTask = {};
 
-    User.getUserById(id, (err, user) => {
-      if(err){
-        console.error(err);
-        res.json({msg: `error: ${err.message}`, data: null});
-      }
+    if (taskId === 'multiple') {
+      let id = req.user;
+      let tasksIdsArr = req.body;
 
-      if(user) {
-        deletedTask = user.tasks.id(taskId);
-
-        user.tasks.id(taskId).remove();
-      }
-
-      user.save((err) =>{
-        if (err) {
-          console.log(err);
+      User.getUserById(id, (err, user) => {
+        if(err){
+          console.error(err);
           res.json({msg: `error: ${err.message}`, data: null});
         }
 
-        res.json({msg: 'success', data: deletedTask});
+        if(user) {
+          let idsArrLength = tasksIdsArr.length;
+          while(idsArrLength--) {
+            let id = tasksIdsArr[idsArrLength];
+            user.tasks.id(id).remove();
+          }
+        }
+
+        user.save((err) =>{
+          if (err) {
+            console.log(err);
+            res.json({msg: `error: ${err.message}`, data: null});
+          }
+
+          res.json({msg: 'success', data: true});
+        });
       });
-    });
+
+    } else {
+      let id = req.user;
+      let deletedTask = {};
+
+      User.getUserById(id, (err, user) => {
+        if(err){
+          console.error(err);
+          res.json({msg: `error: ${err.message}`, data: null});
+        }
+
+        if(user) {
+          deletedTask = user.tasks.id(taskId);
+
+          user.tasks.id(taskId).remove();
+        }
+
+        user.save((err) =>{
+          if (err) {
+            console.log(err);
+            res.json({msg: `error: ${err.message}`, data: null});
+          }
+
+          res.json({msg: 'success', data: deletedTask});
+        });
+      });
+    }
+
+
   });
+
+
 
   app.put('/tasks/:id', passport.authenticate('jwt', {session:false}), (req, res) => {
     let id = req.user;

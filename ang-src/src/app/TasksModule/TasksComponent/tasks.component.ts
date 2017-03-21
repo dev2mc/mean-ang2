@@ -105,9 +105,17 @@ export class TasksComponent implements OnInit {
   };
 
   deleteMultipleTasks(): void {
-    this.tasksToDelete.forEach((v) => {
-      this.deleteTask(v);
-    });
+    this.tasksService.deleteMultipleTasks(this.tasksToDelete).then((data)=>{
+      this.tasksToDelete = [];
+
+      this.getTasks().then(() => {
+        this.generateRandomColors();
+        this.getTags();
+        setTimeout(()=>{
+          this.cd.detectChanges();
+        }, 1);
+      });
+    })
   };
 
   toggleShowAddItem(): void {
