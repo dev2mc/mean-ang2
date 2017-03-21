@@ -1,0 +1,115 @@
+@import '../../../../assets/scss/utils/colors';
+
+$register___heading_col: color(ebony-clay);
+$register___message_col: $register___heading_col;
+$register___label_col: color(ebony-clay);
+$register_bg_col: color(gallery);
+$register___input__invalid_col: color(red-col);
+
+.register-container {
+  width: 100%;
+  padding: 220px 0;
+
+  @media (max-width: 768px) {
+    padding: 100px 0;
+  }
+
+  @media (max-width: 600px) {
+    padding: 30px 0;
+  }
+}
+
+.register {
+  display: block;
+  width: 480px;
+  padding: 40px;
+  margin: 0 auto;
+
+  border-radius: 10px;
+
+  background: $register_bg_col;
+}
+
+.register__heading {
+  margin: 0;
+  margin-bottom: 30px;
+  padding: 0;
+
+  color: $register___heading_col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 20px;
+  text-align: center;
+  line-height: 1;
+}
+
+.register__label-container {
+  width: 255px;
+}
+
+.register__label {
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 0;
+
+  color: $register___label_col;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 14px;
+  line-height: 1;
+}
+
+.register__input {
+  width: 100%;
+
+  &.ng-invalid.ng-touched {
+    border: 2px solid $register___input__invalid_col;
+  }
+}
+
+.register__input_bordcol_invalid {
+  border: 2px solid $register___input__invalid_col;
+}
+
+.register__invalid-input {
+  position: absolute;
+  top: 15px;
+  right: -15px;
+  width: 80px;
+  padding: 5px 10px;
+
+  background: $register___input__invalid_col;
+
+  border-radius: 5px;
+
+  color: white;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  text-transform: lowercase;
+
+  &:after {
+    position: absolute;
+    top: 16px;
+    left: -8px;
+    width: 0;
+    height: 0;
+
+    border-style: solid;
+    border-width: 6.5px 11px 6.5px 0;
+    border-color: transparent $register___input__invalid_col transparent transparent;
+
+    content: ' ';
+  }
+}
+
+.register__input-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.register__button-container {
+  width: 255px;
+  margin: 0 auto;
+}

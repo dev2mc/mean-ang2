@@ -28,7 +28,5 @@ let styles = require('./app.component.scss');
 export class AppComponent {
   constructor(
     private authService:AuthService,
-  ) {
-    console.log(authService.loggedIn());
-  }
+  ) {}
 }

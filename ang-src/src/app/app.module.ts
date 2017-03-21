@@ -14,6 +14,7 @@ import {MailModule} from './MailModule/mail.module';
 import {AppComponent} from './app.component';
 import {NotFoundComponent} from './shared/404Component/404.component';
 import {LoginComponent} from './shared/LoginComponent/login.component';
+import {RegisterComponent} from './shared/RegisterComponent/register.component';
 
 import {DocumentRefService} from './shared/DocumentRefService/document-ref.service';
 import {AuthService} from './shared/AuthService/auth.service';
@@ -46,7 +47,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
   declarations: [
     AppComponent,
     NotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   bootstrap: [ AppComponent ]
 })

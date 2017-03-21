@@ -16,15 +16,39 @@ module.exports = (app) => {
       mails: []
     });
 
-    User.addUser(newUser, (err, user) => {
-      console.log(user);
-      if(err){
-        res.json({success: false, msg:'Failed to register user'});
-      } else {
-        res.json({success: true, msg:'User registered'});
+    User.find({'username': newUser.username}, (err, users) => {
+      if (err) {
+         res.json({success: false, msg: err.message});
+      }
+
+      if (users.length === 0) {
+        User.find({'email': newUser.email}, (err, users) => {
+          if (err) {
+            res.json({success: false, msg: err.message});
+          }
+
+          if (users.length === 0) {
+            User.addUser(newUser, (err, user) => {
+              if(err){
+                res.json({success: false, msg:'Failed to register user'});
+              } else {
+                res.json({success: true, msg:'User registered'});
+              }
+            });
+          }
+
+          if (users.length > 0) {
+            res.json({success: false, msg:'User with this email already exists'});
+          }
+        });
+      }
+
+      if (users.length > 0) {
+        res.json({success: false, msg:'User with this username already exists'});
       }
     });
   });
+  
 
   // Authenticate
   app.post('/authenticate', (req, res) => {
@@ -45,8 +69,6 @@ module.exports = (app) => {
           tokenUser.password = user.password;
           tokenUser.name = user.name;
           tokenUser._id = '' + user._id;
-
-          // console.log(tokenUser);
 
           const token = jwt.sign(tokenUser, config.secret, {
             expiresIn: 604800 // 1 week
@@ -71,7 +93,6 @@ module.exports = (app) => {
 
   // Profile
   app.get('/profile', passport.authenticate('jwt', {session:false}), (req, res) => {
-    // console.log(req);
     res.json({_id: req.user});
   });
 };

@@ -9,25 +9,30 @@ import {ComposeEmailComponent} from './MailModule/ComposeEmailComponent/compose-
 
 import {NotFoundComponent} from './shared/404Component/404.component';
 import {LoginComponent} from './shared/LoginComponent/login.component';
+import {RegisterComponent} from './shared/RegisterComponent/register.component';
 
 import {ViewMailResolveService} from './shared/ViewMailResolveService/view-mail-resolve.service';
 
 import {AuthGuard} from './guards/AuthGuard/auth.guard';
 
 const appRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: '/dashboard',
+    pathMatch: 'full'
+  },
   // {
   //   path: '',
-  //   redirectTo: '/dashboard',
+  //   redirectTo: '/register',
   //   pathMatch: 'full'
   // },
   {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  },
-  {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'dashboard',
