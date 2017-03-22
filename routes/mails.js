@@ -80,63 +80,155 @@ module.exports = (app) => {
   });
 
   app.put('/mails/:id', passport.authenticate('jwt', {session:false}), (req, res) => {
-    let id = req.user;
     let mailId = req.params.id;
-    let updatedMail = req.body;
+    let id = req.user;
 
-    User.getUserById(id, (err, user) => {
-      if(err){
-        console.error(err);
-        res.json({msg: `error: ${err.message}`, data: null});
-      }
+    if (mailId === 'starmult') {
+      let idsArr = req.body;
 
-      if(user) {
-        user.mails.id(mailId).remove();
-        user.mails.push(updatedMail);
+      User.getUserById(id, (err, user) => {
+        if(err){
+          console.error(err);
+          res.json({msg: `error: ${err.message}`, data: null});
+        }
 
-        user.save(function (err) {
-          if (err) {
-            console.log(err);
-            res.json({msg: `error: ${err.message}`, data: null});
-          }
+        if(user) {
+          idsArr.forEach((v) => {
+            let mailItem = user.mails.id(v);
+              if (mailItem) {
+                mailItem.starred = !mailItem.starred;
+                user.mails.id(v).remove();
+                user.mails.push(mailItem);
+              }
+          });
 
-          let updatedMailDown = user.mails.id(mailId);
+          user.save(function (err) {
+            if (err) {
+              console.log(err);
+              res.json({msg: `error: ${err.message}`, data: null});
+            }
 
-          if(updatedMailDown) {
-            res.json({msg: 'success', data: updatedMailDown});
-          } else {
-            res.json({msg: `error`, data: null});
-          }
-        });
-      }
-    });
+            res.json({msg: 'success', data: idsArr});
+          });
+        }
+      });
+
+    } else if (mailId === 'readmult') {
+      let idsArr = req.body;
+
+      User.getUserById(id, (err, user) => {
+        if(err){
+          console.error(err);
+          res.json({msg: `error: ${err.message}`, data: null});
+        }
+
+        if(user) {
+          idsArr.forEach((v) => {
+            let mailItem = user.mails.id(v);
+              if (mailItem) {
+                mailItem.read = !mailItem.read;
+                user.mails.id(v).remove();
+                user.mails.push(mailItem);
+              }
+          });
+
+          user.save(function (err) {
+            if (err) {
+              console.log(err);
+              res.json({msg: `error: ${err.message}`, data: null});
+            }
+
+            res.json({msg: 'success', data: idsArr});
+          });
+        }
+      });
+
+    } else {
+
+      let updatedMail = req.body;
+
+      User.getUserById(id, (err, user) => {
+        if(err){
+          console.error(err);
+          res.json({msg: `error: ${err.message}`, data: null});
+        }
+
+        if(user) {
+          user.mails.id(mailId).remove();
+          user.mails.push(updatedMail);
+
+          user.save(function (err) {
+            if (err) {
+              console.log(err);
+              res.json({msg: `error: ${err.message}`, data: null});
+            }
+
+            let updatedMailDown = user.mails.id(mailId);
+
+            if(updatedMailDown) {
+              res.json({msg: 'success', data: updatedMailDown});
+            } else {
+              res.json({msg: `error`, data: null});
+            }
+          });
+        }
+      });
+    }
   });
 
   app.delete('/mails/:id', passport.authenticate('jwt', {session:false}), (req, res) => {
     let id = req.user;
     let mailId = req.params.id;
-    let deletedMail = {};
 
-    User.getUserById(id, (err, user) => {
-      if(err){
-        console.error(err);
-        res.json({msg: `error: ${err.message}`, data: null});
-      }
+    if (mailId === 'multiple') {
+      let idsArr = req.body;
 
-      if(user) {
-        deletedMail = user.mails.id(mailId);
-
-        user.mails.id(mailId).remove();
-      }
-
-      user.save((err) =>{
-        if (err) {
-          console.log(err);
+      User.getUserById(id, (err, user) => {
+        if(err){
+          console.error(err);
           res.json({msg: `error: ${err.message}`, data: null});
         }
 
-        res.json({msg: 'success', data: deletedMail});
+        if(user) {
+          idsArr.forEach((mailItemId) => {
+            user.mails.id(mailItemId).remove();
+          });
+        }
+
+        user.save((err) =>{
+          if (err) {
+            console.log(err);
+            res.json({msg: `error: ${err.message}`, data: null});
+          }
+
+          res.json({msg: 'success', data: idsArr});
+        });
       });
-    });
+
+    } else {
+      let deletedMail = {};
+
+      User.getUserById(id, (err, user) => {
+        if(err){
+          console.error(err);
+          res.json({msg: `error: ${err.message}`, data: null});
+        }
+
+        if(user) {
+          deletedMail = user.mails.id(mailId);
+
+          user.mails.id(mailId).remove();
+        }
+
+        user.save((err) =>{
+          if (err) {
+            console.log(err);
+            res.json({msg: `error: ${err.message}`, data: null});
+          }
+
+          res.json({msg: 'success', data: deletedMail});
+        });
+      });
+    }
   });
 };

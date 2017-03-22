@@ -231,29 +231,52 @@ export class MailListComponent implements OnInit, OnChanges {
   };
 
   deleteMailGroup(): void {
-    let promiseArr:any = [];
-
-    this.selectedIds.forEach((v, i) => {
-      let prom = this.deleteMail(v).then(() => {
-        this.selectedIds.splice(i, 1);
+    this.mailService.deleteMultipleMails(this.selectedIds)
+    .then((deletedIds) => {
+      let mailsIds = this.mails.map((mailItem) => {
+        return mailItem._id;
       })
-      promiseArr.push(prom);
-    });
-    Promise.all(promiseArr).then(() => {
+
+      let mailsIndexes: any = [];
+
+      mailsIds.forEach((mailId, idInd) => {
+        if (deletedIds.indexOf(mailId) > - 1) {
+          mailsIndexes.push(idInd);
+        }
+      })
+
+      mailsIndexes = mailsIndexes.sort().reverse();
+
+      mailsIndexes.forEach((ind: number) => {
+        this.mails.splice(ind, 1);
+      })
+
       this.selectedIds = [];
     })
   };
 
   toggleStarredGroup(): void {
-    this.selectedIds.forEach((v, i) => {
-      this.toggleStarred(v);
-    });
+    this.mailService.starMultipleMails(this.selectedIds)
+    .then((changedIds) => {
+      this.mails.forEach((mailItem, index) => {
+        if (changedIds.indexOf(mailItem._id) > -1) {
+          this.mails[index].starred = !this.mails[index].starred;
+          changedIds.splice(changedIds.indexOf(mailItem._id), 1);
+        }
+      });
+    })
   };
 
   toggleReadGroup(): void {
-    this.selectedIds.forEach((v, i) => {
-       this.toggleReadMail(v)
-    });
+    this.mailService.markReadMultipleMails(this.selectedIds)
+    .then((changedIds) => {
+      this.mails.forEach((mailItem, index) => {
+        if (changedIds.indexOf(mailItem._id) > -1) {
+          this.mails[index].read = !this.mails[index].read;
+          changedIds.splice(changedIds.indexOf(mailItem._id), 1);
+        }
+      });
+    })
   };
 
   addToSelectedIds(id: string): void {

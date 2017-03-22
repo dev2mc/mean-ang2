@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Headers, Http} from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -58,12 +58,39 @@ export class MailService {
       });
   };
 
+  starMultipleMails(idsArr: string[]): Promise<string[]> {
+    return this.http.put(`${this._uri}/starmult`, JSON.stringify(idsArr), {headers: this.headers})
+    .toPromise()
+    .then((response: any) => {
+      let respArr = JSON.parse(response._body);
+      return respArr.data;
+    })
+  }
+
+  markReadMultipleMails(idsArr: string[]): Promise<string[]> {
+    return this.http.put(`${this._uri}/readmult`, JSON.stringify(idsArr), {headers: this.headers})
+    .toPromise()
+    .then((response: any) => {
+      let respArr = JSON.parse(response._body);
+      return respArr.data;
+    })
+  }
+
   deleteMail(id: string): Promise<Mail> {
     return this.http.delete(`${this._uri}/${id}`, {headers: this.headers})
       .toPromise()
       .then((response: any) => {
         let resObj = JSON.parse(response._body);
         return resObj.data;
+      });
+  };
+
+  deleteMultipleMails(idArr: string[]): Promise<string[]> {
+    return this.http.delete(`${this._uri}/multiple`, new RequestOptions({headers: this.headers, body: JSON.stringify(idArr)}))
+      .toPromise()
+      .then((response: any) => {
+        let resArr = JSON.parse(response._body);
+        return resArr.data;
       });
   };
 }
