@@ -1,4 +1,4 @@
-<div class="mail__data-container">
+<div class="mail__data-container" *ngIf='!!mails'>
   <div *ngFor='let mail of mails' class='mail__item' [class.mail__item_is_new]='!mail.read'>
     <i class="fa fa-square" [class.fa-check-square]='showIfSelected(mail._id)' [class.mail__item-checkbox]='true' aria-hidden="true" (click)='addToSelectedIds(mail._id)'></i>
     <i class="fa fa-star mail__item-starred" [class.mail__item-starred_is_true]='mail.starred' aria-hidden="true" (click)='toggleStarred(mail._id)'></i>
@@ -19,3 +19,4 @@
     </div>
   </div>
 </div>
+<div class="mail__data-container" *ngIf='!!!mails'>You have no {{type}} emails</div>
