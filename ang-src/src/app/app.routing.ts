@@ -14,6 +14,7 @@ import {RegisterComponent} from './shared/RegisterComponent/register.component';
 import {ViewMailResolveService} from './shared/ViewMailResolveService/view-mail-resolve.service';
 
 import {AuthGuard} from './guards/AuthGuard/auth.guard';
+import {LoginGuard} from './guards/LoginGuard/login.guard';
 
 const appRoutes: Routes = [
   {
@@ -28,11 +29,13 @@ const appRoutes: Routes = [
   // },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate:[LoginGuard]
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate:[LoginGuard]
   },
   {
     path: 'dashboard',

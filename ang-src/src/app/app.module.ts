@@ -20,6 +20,7 @@ import {DocumentRefService} from './shared/DocumentRefService/document-ref.servi
 import {AuthService} from './shared/AuthService/auth.service';
 
 import {AuthGuard} from  './guards/AuthGuard/auth.guard';
+import {LoginGuard} from  './guards/LoginGuard/login.guard';
 
 import { FlashMessagesModule } from 'angular2-flash-messages';
 
@@ -42,7 +43,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
   providers: [
     DocumentRefService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    LoginGuard
     ],
   declarations: [
     AppComponent,
