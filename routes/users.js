@@ -48,7 +48,7 @@ module.exports = (app) => {
       }
     });
   });
-  
+
 
   // Authenticate
   app.post('/authenticate', (req, res) => {

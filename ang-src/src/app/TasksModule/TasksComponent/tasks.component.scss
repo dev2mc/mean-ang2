@@ -215,3 +215,12 @@ $tasks-deletion---button--for--delete-disabled: color(silver-col);
     justify-content: space-around;
   }
 }
+
+.tasks__empty {
+  margin: 0;
+  padding: 30px;
+
+  color: $tasks-tags---tag--col--active;
+  font-size: 16px;
+  font-family: 'HelveticaNeueLTStd Roman';
+}

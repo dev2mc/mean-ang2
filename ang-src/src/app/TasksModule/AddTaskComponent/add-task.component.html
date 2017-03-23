@@ -15,7 +15,7 @@
       <input [(ngModel)]='item.tag' tabindex='2' type="text" name="addItemTag" placeholder="add tag for new task" class="add-item__input add-item__input_is_tag" required>
     </label>
 
-    <label class="add-item__label">
+    <label class="add-item__label" *ngIf='(tags.length > 1)'>
       <p class="add-item__label-name">Or choose an already used tag:</p>
       <div class="add-item__tags">
         <span class="add-item__tag-item" *ngFor='let tag of tags' [hidden]='tag === "all"' (click)='item.tag = tag'>{{tag}}</span>

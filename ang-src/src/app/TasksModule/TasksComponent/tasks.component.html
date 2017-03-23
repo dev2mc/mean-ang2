@@ -12,12 +12,16 @@
     <button type="button" class="tasks-deletion__button tasks-deletion__button_for_cancel" (click)='showDelete = !showDelete; resetTasksToDel()'>cancel</button>
   </div>
 
-  <div class="tasks-tags">
+  <div class="tasks-tags" *ngIf='(tasks.length > 0)'>
     <span class="tasks-tags__tag" *ngFor='let item of tags' (click)='currentTag = item'>{{item}}</span>
   </div>
 
-  <div class="tasks-container">
+  <div class="tasks-container" *ngIf='(tasks.length > 0)'>
     <task-item class="task-element" *ngFor='let item of tasks | TasksFilter:currentTag; let index = index' [item]='item' [color]='randomColors[index]' [delitems]='tasksToDelete' [showdel]='showDelete' (onUpdated)='updateTask($event)' (onDeleted)='addToDelete($event)'></task-item>
+  </div>
+
+  <div class="tasks-container" *ngIf='(tasks.length === 0)'>
+    <p class="tasks__empty">There are no tasks for you</p>
   </div>
 
   <add-task class="add-item" *ngIf='showAddItem' [item]='newItemBoilerplate' [tags]='tags' (onAdded)='addTask($event)' (onHidden)='toggleShowAddItem()'></add-task>

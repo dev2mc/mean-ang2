@@ -3,12 +3,14 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {tokenNotExpired} from 'angular2-jwt';
 
+import {WindowRefService} from '../WindowRefService/window-ref.service';
+
 @Injectable()
 export class AuthService {
   authToken: any;
   user: any;
 
-  constructor(private http:Http) { }
+  constructor(private http:Http, private windService:WindowRefService) { }
 
   registerUser(user:any){
     let headers = new Headers();
@@ -51,5 +53,6 @@ export class AuthService {
     this.authToken = null;
     this.user = null;
     localStorage.clear();
+    this.windService.nativeWindow.location.reload();
   }
 }

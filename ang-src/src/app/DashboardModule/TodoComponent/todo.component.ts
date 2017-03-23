@@ -14,7 +14,7 @@ let styles = require('./todo.component.scss');
 })
 export class TodoComponent implements OnInit {
   showAdd: boolean = false;
-  todos: Todo[];
+  todos: Todo[] = [];
   boilerplateTodo: Todo = {
     description: '',
     completed: false
