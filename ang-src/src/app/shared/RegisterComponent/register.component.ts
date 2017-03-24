@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ElementRef} from '@angular/core';
 import {AuthService} from '../AuthService/auth.service';
 import {Router} from '@angular/router';
 import {FlashMessagesService} from 'angular2-flash-messages';
@@ -15,13 +15,71 @@ export class RegisterComponent {
   name: String;
   email: String;
   username: String;
-  password: String;
+  password: string;
+  image64: any = null;
+  imageInputElem: HTMLInputElement;
+  userImageElem: HTMLImageElement;
+  userImageBase64Obj: Object = {};
+  isUserimageValid: boolean = false;
 
   constructor(
     private authService:AuthService,
     private router:Router,
-    private flashMessage:FlashMessagesService
+    private flashMessage:FlashMessagesService,
+    private elemRef: ElementRef
   ) {}
+
+  ngOnInit() {
+    this.imageInputElem = this.elemRef.nativeElement.querySelector('.register__input_type_file');
+    this.userImageElem = this.elemRef.nativeElement.querySelector('.register__userimage');
+
+    this.imageInputElem.onchange = () => {
+      if (this.imageInputElem.files && this.imageInputElem.files.length > 0) {
+        this.base64(this.imageInputElem.files[0], (base64Img: any) => {
+          this.userImageBase64Obj = base64Img;
+          this.image64 = `data:${base64Img.filetype};base64,${base64Img.base64}`;
+
+          setTimeout(() => {
+            this.validateUserimage();
+          }, 1)
+        });
+      } else {
+        this.image64 = null;
+        this.isUserimageValid = false;
+      }
+    }
+  }
+
+  base64(file:any, callback:any){
+    var coolFile:any = {};
+    function readerOnload(e:any){
+      var base64 = btoa(e.target.result);
+      coolFile.base64 = base64;
+      let base64Img = base64;
+      callback(coolFile);
+    };
+
+    var reader = new FileReader();
+    reader.onload = readerOnload;
+
+    coolFile.filetype = file.type;
+    coolFile.size = file.size;
+    coolFile.filename = file.name;
+    reader.readAsBinaryString(file);
+  }
+
+  validateUserimage() {
+    if (
+      this.userImageElem.width <= 100
+      && this.userImageElem.height <= 100
+      && this.userImageElem.width >= 34
+      && this.userImageElem.height >= 34
+    ) {
+      this.isUserimageValid = true;
+    } else {
+      this.isUserimageValid = false;
+    }
+  }
 
   onRegisterSubmit() {
     const user = {
@@ -45,6 +103,25 @@ export class RegisterComponent {
         });
       }
     })
+  }
+
+  test(imagef: any) {
+    const user = {
+      name: this.name,
+      email: this.email,
+      username: this.username,
+      password: btoa(this.password),
+      userImageBase64: ''
+    }
+
+    this.base64(imagef.files[0], (base64Img: any) => {
+      user.userImageBase64 = base64Img.base64;
+    });
+  }
+
+  test2(imagef: any) {
+    console.log(this.userImageElem.width);
+    console.log(this.userImageElem.height);
   }
 
   goToLogin() {
