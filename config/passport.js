@@ -12,17 +12,5 @@ module.exports = function(passport){
     let _id = jwt_payload._id;
 
     return done(null, _id);
-
-    // User.getUserById(jwt_payload._doc._id, (err, user) => {
-    //   if(err){
-    //     return done(err, false);
-    //   }
-
-    //   if(user){
-    //     return done(null, user);
-    //   } else {
-    //     return done(null, false);
-    //   }
-    // });
   }));
 };

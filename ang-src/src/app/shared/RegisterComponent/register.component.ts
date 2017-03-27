@@ -124,24 +124,6 @@ export class RegisterComponent {
     })
   }
 
-  test(imagef: any) {
-    const user = {
-      name: this.name,
-      email: this.email,
-      username: this.username,
-      password: btoa(this.password),
-      userImageBase64: ''
-    }
-
-    this.base64(imagef.files[0], (base64Img: any) => {
-      user.userImageBase64 = base64Img.base64;
-    });
-  }
-
-  test2(imagef: any) {
-    console.log(imagef);
-  }
-
   goToLogin() {
     this.router.navigate(['login']);
   }

@@ -98,6 +98,37 @@ module.exports = (app) => {
 
   // Profile
   app.get('/profile', passport.authenticate('jwt', {session:false}), (req, res) => {
-    res.json({_id: req.user});
+    let userId = req.user;
+
+    User.getUserById(userId, (err, user) => {
+      if (err) {
+        res.json({success: false, msg: err.message});
+      }
+
+      let userFound = {
+        name: user.name,
+        email: user.email,
+        username: user.username,
+        registeredTime: user.registeredTime,
+        emailsAll: user.mails.length,
+        emailsUnread: user.mails.filter((val) => {
+          return !val.read;
+        }).length,
+        emailsStarred: user.mails.filter((val) => {
+          return val.starred;
+        }).length,
+        tasksAll: user.tasks.length,
+        tasksFavorite: user.tasks.filter((val) => {
+          return val.favorite;
+        }).length,
+        todosAll: user.todos.length,
+        todosCompleted: user.todos.filter((val) => {
+          return val.completed;
+        }).length,
+        userImageBase64: user.userImageBase64
+      };
+
+      res.json({msg: 'User profile extracted', success: true, data: userFound});
+    });
   });
 };
