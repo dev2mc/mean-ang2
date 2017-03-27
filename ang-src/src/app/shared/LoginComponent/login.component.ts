@@ -3,6 +3,9 @@ import {AuthService} from '../AuthService/auth.service';
 import {Router} from '@angular/router';
 import {FlashMessagesService} from 'angular2-flash-messages';
 
+let base64 = require('base-64');
+var utf8 = require('utf8');
+
 let template = require('./login.component.html');
 let styles = require('./login.component.scss');
 
@@ -27,7 +30,7 @@ export class LoginComponent implements OnInit {
   onLoginSubmit(){
     const user = {
       username: this.username,
-      password: this.password
+      password: base64.encode(utf8.encode(this.password)),
     }
 
     this.authService.authenticateUser(user).subscribe(data => {

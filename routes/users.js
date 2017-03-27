@@ -58,7 +58,7 @@ module.exports = (app) => {
   // Authenticate
   app.post('/authenticate', (req, res) => {
     const username = req.body.username;
-    const password = req.body.password;
+    const password = utf8.decode(base64.decode(req.body.password));
 
     User.getUserByUsername(username, (err, user) => {
       if(err) {throw err;}
