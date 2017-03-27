@@ -5,6 +5,8 @@ $register___message_col: $register___heading_col;
 $register___label_col: color(ebony-clay);
 $register_bg_col: color(gallery);
 $register___input__invalid_col: color(red-col);
+$register__invalid_input_col: color(white-col);
+$register___invalid_input_file_col: color(ebody-clay);
 
 .register-container {
   width: 100%;
@@ -65,6 +67,12 @@ $register___input__invalid_col: color(red-col);
   }
 }
 
+.register__input_type_file {
+  &.ng-invalid.ng-touched {
+    border: inherit !important;
+  }
+}
+
 .register__input_bordcol_invalid {
   border: 2px solid $register___input__invalid_col;
 }
@@ -72,7 +80,7 @@ $register___input__invalid_col: color(red-col);
 .register__invalid-input {
   position: absolute;
   top: 15px;
-  right: -15px;
+  right: -88px;
   width: 80px;
   padding: 5px 10px;
 
@@ -80,7 +88,7 @@ $register___input__invalid_col: color(red-col);
 
   border-radius: 5px;
 
-  color: white;
+  color: $register__invalid_input_col;
   font-family: 'HelveticaNeueLTStd Roman';
   font-size: 12px;
   line-height: 1.5;
@@ -102,11 +110,34 @@ $register___input__invalid_col: color(red-col);
   }
 }
 
+.register__invalid-input-file {
+  margin: 0;
+  padding: 0;
+
+  color: $register___invalid_input_file_col;
+  font-family: 'HelveticaNeueLTStd light';
+  font-size: 14px;
+  line-height: 1.5;
+}
+
 .register__input-container {
   position: relative;
   display: flex;
+  width: 255px;
+  width: 255px;
+  margin: 0 auto;
   justify-content: center;
   margin-bottom: 20px;
+}
+
+.register__input-container_for_image {
+  // width: 255px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.register__input-container_marginbot_none {
+  margin-bottom: 0;
 }
 
 .register__button-container {

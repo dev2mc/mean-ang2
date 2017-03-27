@@ -42,19 +42,20 @@
       <div class="register__input-container">
         <label class="register__label-container">
           <p class="register__label">User image (optional):</p>
-          <input class="register__input register__input_type_file" type="file" name='userimage' tabindex='5' #registerImageDiff accept="image/gif, image/jpeg, image/png">
+          <input class="register__input register__input_type_file" type="file" name='userimage' [(ngModel)]="userimageqqqq" tabindex='5' #userImageInput="ngModel"accept="image/gif, image/jpeg, image/png">
+
+          <p class="register__invalid-input-file" *ngIf='!isUserimageValid && userImageInput.touched'>Please choose image that is not bigger than 100px &times; 100px and not smaller than 34px &times; 34px</p>
         </label>
       </div>
 
-      <div class="register__input-container">
+      <div class="register__input-container register__input-container_for_image" [class.register__input-container_marginbot_none]='!isUserimageValid'>
         <img [src]='image64' alt="userimage" class="register__userimage" [hidden]='!isUserimageValid'>
+        <button class="register__button" tabindex='6' (click)='resetUserImage()' [hidden]='!isUserimageValid'>Remove user image</button>
       </div>
 
       <div class="register__button-container">
-        <!--<button class="register__button" (click)='onRegisterSubmit()' [disabled]='!registerForm.form.valid' tabindex='6'>Register</button>-->
-        <button class="register__button" (click)='test(registerImageDiff)' tabindex='6'>Register</button>
-        <!--<button class="register__button" tabindex='7' (click)='goToLogin()'>Login</button>-->
-        <button class="register__button" tabindex='7' (click)='test2(registerImageDiff)'>Login</button>
+        <button class="register__button" (click)='onRegisterSubmit()' [disabled]='!registerForm.form.valid' tabindex='6'>Register</button>
+        <button class="register__button" tabindex='7' (click)='goToLogin()'>Login</button>
       </div>
 
     </form>

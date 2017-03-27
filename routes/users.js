@@ -3,6 +3,9 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const User = require('../models/user');
 
+let base64 = require('base-64');
+var utf8 = require('utf8');
+
 module.exports = (app) => {
   // Register
   app.post('/register', (req, res) => {
@@ -10,7 +13,9 @@ module.exports = (app) => {
       name: req.body.name,
       email: req.body.email,
       username: req.body.username,
-      password: req.body.password,
+      password: utf8.decode(base64.decode(req.body.password)),
+      registeredTime: Date.now(),
+      userImageBase64: req.body.userImageBase64,
       tasks: [],
       todos: [],
       mails: []

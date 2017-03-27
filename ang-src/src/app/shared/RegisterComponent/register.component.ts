@@ -3,6 +3,9 @@ import {AuthService} from '../AuthService/auth.service';
 import {Router} from '@angular/router';
 import {FlashMessagesService} from 'angular2-flash-messages';
 
+let base64 = require('base-64');
+var utf8 = require('utf8');
+
 let template = require('./register.component.html');
 let styles = require('./register.component.scss');
 
@@ -19,7 +22,7 @@ export class RegisterComponent {
   image64: any = null;
   imageInputElem: HTMLInputElement;
   userImageElem: HTMLImageElement;
-  userImageBase64Obj: Object = {};
+  userImageBase64Obj: any = null;
   isUserimageValid: boolean = false;
 
   constructor(
@@ -41,11 +44,14 @@ export class RegisterComponent {
 
           setTimeout(() => {
             this.validateUserimage();
-          }, 1)
+
+            if (!this.isUserimageValid) {
+              this.resetUserImage();
+            }
+          }, 1000)
         });
       } else {
-        this.image64 = null;
-        this.isUserimageValid = false;
+        this.resetUserImage();
       }
     }
   }
@@ -78,7 +84,15 @@ export class RegisterComponent {
       this.isUserimageValid = true;
     } else {
       this.isUserimageValid = false;
+
     }
+  }
+
+  resetUserImage() {
+    this.imageInputElem.value = '';
+    this.image64 = null;
+    this.isUserimageValid = false;
+    this.userImageBase64Obj = null
   }
 
   onRegisterSubmit() {
@@ -86,7 +100,12 @@ export class RegisterComponent {
       name: this.name,
       email: this.email,
       username: this.username,
-      password: this.password
+      password: base64.encode(utf8.encode(this.password)),
+      userImageBase64: ''
+    }
+
+    if (this.isUserimageValid && !!this.userImageBase64Obj) {
+      user.userImageBase64 = this.userImageBase64Obj.base64;
     }
 
     this.authService.registerUser(user).subscribe( data => {
@@ -120,8 +139,7 @@ export class RegisterComponent {
   }
 
   test2(imagef: any) {
-    console.log(this.userImageElem.width);
-    console.log(this.userImageElem.height);
+    console.log(imagef);
   }
 
   goToLogin() {

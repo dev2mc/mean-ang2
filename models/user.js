@@ -38,6 +38,8 @@ const UserSchema = new Schema({
   email: String,
   username: String,
   password: String,
+  registeredTime: Number,
+  userImageBase64: String,
   tasks: [tasksSchema],
   todos: [todosSchema],
   mails: [mailsSchema]
