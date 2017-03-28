@@ -59,20 +59,29 @@ $topbar---font-col: color(whisper);
 //-----------------------------
 .topbar__profile-wrapper {
   flex-shrink: 0;
-  width: 145px;
+  width: 167px;
   margin-left: auto;
 
   @media (max-width: 600px) {
     flex-shrink: 1;
   }
+
+  @media (max-width: 480px) {
+    width: 128px;
+  }
 }
 
 $topbar---notifs-wrapper-width: 98px;
+$topbar---notifs-wrapper-width-small: 80px;
 
 //---topbar__search-wrapper---
 //----------------------------
 .topbar__search-wrapper {
   width: calc(100% -  #{$topbar---notifs-wrapper-width});
+
+  @media (max-width: 480px) {
+    width: calc(100% -  #{$topbar---notifs-wrapper-width-small});
+  }
 }
 
 //---topbar__notifs-wrapper---
@@ -80,4 +89,8 @@ $topbar---notifs-wrapper-width: 98px;
 .topbar__notifs-wrapper {
   flex-shrink: 0;
   width: $topbar---notifs-wrapper-width;
+
+  @media (max-width: 480px) {
+    width: $topbar---notifs-wrapper-width-small;
+  }
 }

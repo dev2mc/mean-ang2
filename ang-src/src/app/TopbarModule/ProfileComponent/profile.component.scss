@@ -2,24 +2,42 @@
 
 $profile---avatar-col: color(cadet-blue);
 $profile---dropdown-icon-col: $profile---avatar-col;
+$profile---options-bg-col: color(alto-lighter);
+$profile---link-txt-col: color(ebony-clay);
+$profile---show--if--opts-visible : lighten(color(ebony-clay), 25%);
 
 //---profile---
 //-------------
 .profile {
+  position: relative;
+
   @media (min-width: 601px) and (max-width: 1199px) {
     margin-left: 15px;
   }
 }
 
-//---profile__link---
+//---profile__show---
 //-------------------
-.profile__link {
+.profile__show {
+  position: relative;
   display: flex;
   align-items: center;
-  text-decoration: none;
 
-  &:hover {
-    text-decoration: none;
+  z-index: 10;
+
+  cursor: pointer;
+
+  user-select: none;
+}
+
+.profile__show_if_opts-visible {
+  .profile__avatar {
+    border: 1px solid $profile---show--if--opts-visible;
+  }
+
+  .profile__greeting,
+  .profile__dropdown-icon {
+    color: $profile---show--if--opts-visible;
   }
 }
 
@@ -30,7 +48,14 @@ $profile---dropdown-icon-col: $profile---avatar-col;
   height: 34px;
   margin-right: 10px;
 
+  margin-left: auto;
+
   border-radius: 50%;
+
+  @media (max-width: 600px) {
+    width: 27px;
+    height: 27px;
+  }
 }
 
 //---profile__greeting---
@@ -38,11 +63,15 @@ $profile---dropdown-icon-col: $profile---avatar-col;
 .profile__greeting {
   margin: 0;
   padding: 0;
+  margin-right: 5px;
 
   color: $profile---avatar-col;
   font-family: 'HelveticaNeueLTStd Roman';
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1;
+
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__greeting_font_bolder {
@@ -52,8 +81,56 @@ $profile---dropdown-icon-col: $profile---avatar-col;
 //---profile__dropdown-icon---
 //----------------------------
 .profile__dropdown-icon {
-  margin-left: auto;
-
   color: $profile---dropdown-icon-col;
   font-size: 18px !important;
+}
+
+.profile__options {
+  position: absolute;
+  top: -14px;
+  left: -10px;
+  padding-top: 60px;
+  width: 190px;
+
+  z-index: 1;
+
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  box-shadow: 0 0 15px $profile---options-bg-col;
+
+  background: $profile---options-bg-col;
+
+  @media (max-width: 1199px) {
+    width: 172px;
+  }
+
+  @media (max-width: 600px) {
+    top: -18px;
+    padding-top: 64px;
+    width: 140px;
+  }
+}
+
+.profile__link {
+  display: block;
+  margin: 0;
+  margin-bottom: 15px;
+  padding: 0;
+  padding-right: 27px;
+
+  color: lighten($profile---link-txt-col, 25%);
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 14px;
+  line-height: 1;
+  text-align: right;
+
+  cursor: pointer;
+
+  user-select: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
 }

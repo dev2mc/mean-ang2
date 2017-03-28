@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 import {tokenNotExpired} from 'angular2-jwt';
 
 import {WindowRefService} from '../WindowRefService/window-ref.service';
@@ -10,7 +11,10 @@ export class AuthService {
   authToken: any;
   user: any;
 
-  constructor(private http:Http, private windService:WindowRefService) { }
+  constructor(
+    private http:Http,
+    private windService:WindowRefService
+  ) { }
 
   registerUser(user:any){
     let headers = new Headers();
@@ -23,16 +27,31 @@ export class AuthService {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
     return this.http.post('http://localhost:3000/authenticate', user,{headers: headers})
-      .map(res => res.json());
+    .map(res => {
+      let data = res.json();
+      if(data.success){
+        this.storeUserData(data.token, data.user);
+        return {success: true, msg: 'success'};
+      } else {
+        return {success: false, msg: data.msg};
+      }
+    });
   }
 
-  getProfile(){
-    let headers = new Headers();
-    this.loadToken();
-    headers.append('Authorization', this.authToken);
-    headers.append('Content-Type','application/json');
+   getProfile(){
+    let headers = new Headers(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': this.loadToken()
+      }
+    );
+
     return this.http.get('http://localhost:3000/profile',{headers: headers})
-      .map(res => res.json());
+    .toPromise()
+    .then((response: any) => {
+      let resObj = JSON.parse(response._body);
+      return resObj.data;
+    })
   }
 
   storeUserData(token:any, user:any){
@@ -43,6 +62,7 @@ export class AuthService {
   loadToken(){
     const token = localStorage.getItem('id_token');
     this.authToken = token;
+    return this.authToken;
   }
 
   loggedIn(){

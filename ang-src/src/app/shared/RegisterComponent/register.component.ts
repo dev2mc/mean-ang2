@@ -105,7 +105,7 @@ export class RegisterComponent {
     }
 
     if (this.isUserimageValid && !!this.userImageBase64Obj) {
-      user.userImageBase64 = this.userImageBase64Obj.base64;
+      user.userImageBase64 = JSON.stringify(this.userImageBase64Obj);
     }
 
     this.authService.registerUser(user).subscribe( data => {

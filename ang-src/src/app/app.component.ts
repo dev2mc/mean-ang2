@@ -10,11 +10,11 @@ let styles = require('./app.component.scss');
   template: `
     <flash-messages></flash-messages>
     <div class='app-wrapper'>
-      <header class='app-header' [hidden]='!authService.loggedIn()'>
+      <header class='app-header' *ngIf='authService.loggedIn()'>
         <topbar></topbar>
       </header>
       <div class='content-wrapper'>
-        <aside class='app-aside' [hidden]='!authService.loggedIn()'>
+        <aside class='app-aside' *ngIf='authService.loggedIn()'>
           <menubar></menubar>
         </aside>
         <main class='app-main'>
