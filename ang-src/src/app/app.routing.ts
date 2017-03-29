@@ -6,6 +6,8 @@ import {DashboardComponent} from './DashboardModule/DashboardComponent/dashboard
 import {MailComponent} from './MailModule/MailComponent/mail.component';
 import {ViewMailComponent} from './MailModule/ViewMailComponent/view-mail.component';
 import {ComposeEmailComponent} from './MailModule/ComposeEmailComponent/compose-email.component';
+import {ProfileViewComponent} from './ProfileModule/ProfileViewComponent/profile-view.component';
+import {ProfileChangeComponent} from './ProfileModule/ProfileChangeComponent/profile-change.component';
 
 import {NotFoundComponent} from './shared/404Component/404.component';
 import {LoginComponent} from './shared/LoginComponent/login.component';
@@ -19,14 +21,9 @@ import {LoginGuard} from './guards/LoginGuard/login.guard';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/profilechange',
     pathMatch: 'full'
   },
-  // {
-  //   path: '',
-  //   redirectTo: '/register',
-  //   pathMatch: 'full'
-  // },
   {
     path: 'login',
     component: LoginComponent,
@@ -36,6 +33,16 @@ const appRoutes: Routes = [
     path: 'register',
     component: RegisterComponent,
     canActivate:[LoginGuard]
+  },
+  {
+    path: 'profileview',
+    component: ProfileViewComponent,
+    canActivate:[AuthGuard]
+  },
+  {
+    path: 'profilechange',
+    component: ProfileChangeComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'dashboard',

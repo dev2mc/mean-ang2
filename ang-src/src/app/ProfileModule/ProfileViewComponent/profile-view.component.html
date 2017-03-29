@@ -1,0 +1,22 @@
+<div class="profile-view">
+  <div class="profile-view__container">
+    <div class="profile-view__image">
+      <img src="../../../../assets/images/users/default-userimage.jpg" alt="user default image" class="profile__avatar" *ngIf='!!!image64'>
+      <img [src]='image64' alt="user image" class="profile__avatar" *ngIf='!!image64'>
+    </div>
+    <h3 class="profile-view__heading">Your profile, <span *ngIf='!!profile'>{{profile.name}}</span><span *ngIf='!!!profile'>user</span>:</h3>
+    <p class="profile-view__info">Your username: <span class='profile-view__info_font_bold' *ngIf='!!profile'>{{profile.username}}</span></p>
+    <p class="profile-view__info">Your email: <span class='profile-view__info_font_bold' *ngIf='!!profile'>{{profile.email}}</span></p>
+    <p class="profile-view__info">Registered at: <span class='profile-view__info_font_bold' *ngIf='!!profile'>{{getMailTime(profile.registeredTime)}}</span></p>
+    <p class="profile-view__info">Emails you've got: <span class='profile-view__info_font_bold' *ngIf='!!profile'>{{profile.emailsAll}}</span></p>
+    <p class="profile-view__info">Emails unread: <span class='profile-view__info_font_bold' *ngIf='!!profile'>{{profile.emailsUnread}}</span></p>
+    <p class="profile-view__info">Emails starred: <span class='profile-view__info_font_bold' *ngIf='!!profile'>{{profile.emailsStarred}}</span></p>
+    <p class="profile-view__info">Tasks: <span class='profile-view__info_font_bold' *ngIf='!!profile'>{{profile.tasksAll}}</span></p>
+    <p class="profile-view__info">Tasks completed: <span class='profile-view__info_font_bold' *ngIf='!!profile'>{{profile.tasksFavorite}}</span></p>
+    <p class="profile-view__info">Todos: <span class='profile-view__info_font_bold' *ngIf='!!profile'>{{profile.todosAll}}</span></p>
+    <p class="profile-view__info">Todos completed: <span class='profile-view__info_font_bold' *ngIf='!!profile'>{{profile.todosCompleted}}</span></p>
+    <div class="profile-view__button-container">
+      <button class="profile-view__button" (click)='goToChangeProfile()'>Change profile</button>
+    </div>
+  </div>
+</div>

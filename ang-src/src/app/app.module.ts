@@ -10,11 +10,13 @@ import {MenubarModule} from './MenubarModule/menubar.module';
 import {TasksModule} from './TasksModule/tasks.module';
 import {DashboardModule} from './DashboardModule/dashboard.module';
 import {MailModule} from './MailModule/mail.module';
+import {ProfileModule} from './ProfileModule/profile.module';
 
 import {AppComponent} from './app.component';
 import {NotFoundComponent} from './shared/404Component/404.component';
 import {LoginComponent} from './shared/LoginComponent/login.component';
 import {RegisterComponent} from './shared/RegisterComponent/register.component';
+// import {ProfileViewComponent} from './shared/ProfileViewComponent/profile-view.component';
 
 import {DocumentRefService} from './shared/DocumentRefService/document-ref.service';
 import {AuthService} from './shared/AuthService/auth.service';
@@ -38,7 +40,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     MenubarModule,
     TasksModule,
     DashboardModule,
-    MailModule
+    MailModule,
+    ProfileModule
   ],
   providers: [
     DocumentRefService,
