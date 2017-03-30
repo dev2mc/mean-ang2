@@ -61,13 +61,13 @@ module.exports = (app) => {
     const password = utf8.decode(base64.decode(req.body.password));
 
     User.getUserByUsername(username, (err, user) => {
-      if(err) {throw err;}
+      if(err) {console.error(err);}
       if(!user){
         return res.json({success: false, msg: 'User not found'});
       }
 
       User.comparePassword(password, user.password, (err, isMatch) => {
-        if(err) {throw err;}
+        if(err) {console.error(err);}
         if(isMatch){
           let tokenUser = {};
           tokenUser.username = user.username;
@@ -129,6 +129,21 @@ module.exports = (app) => {
       };
 
       res.json({msg: 'User profile extracted', success: true, data: userFound});
+    });
+  });
+
+  app.get('/checkuser/:username', passport.authenticate('jwt', {session:false}), (req, res) => {
+    let uname = req.params.username;
+    User.find({'username': uname}, (err, users) => {
+      if(err) {console.error(err);}
+
+      if (users.length === 0) {
+        return res.json({data: false, msg: 'User with this username does not exist'});
+      }
+
+      if (users.length > 0) {
+        return res.json({data: true, msg: 'User with this username exists'});
+      }
     });
   });
 };

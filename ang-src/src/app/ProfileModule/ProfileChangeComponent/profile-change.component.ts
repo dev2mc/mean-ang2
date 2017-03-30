@@ -1,10 +1,14 @@
-import {Component, OnInit, ElementRef} from '@angular/core';
+import {Component, OnInit, OnDestroy, ElementRef} from '@angular/core';
 import {AuthService} from '../../shared/AuthService/auth.service';
 import {Router} from '@angular/router';
 import {FlashMessagesService} from 'angular2-flash-messages';
 
 let base64 = require('base-64');
 var utf8 = require('utf8');
+
+import {Subject} from 'rxjs/Subject';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/filter';
 
 let template = require('./profile-change.component.html');
 let styles = require('./profile-change.component.scss');
@@ -14,7 +18,7 @@ let styles = require('./profile-change.component.scss');
   template: template,
   styles: [styles]
 })
-export class ProfileChangeComponent {
+export class ProfileChangeComponent implements OnInit, OnDestroy {
   newName: string = '';
   newUsername: string = '';
   newPassword: string = '';
@@ -27,6 +31,30 @@ export class ProfileChangeComponent {
 
   profile: any;
   image64Original: string = '';
+
+  isUsernameUsed: boolean = false;
+
+  showConfirmDialog: boolean = false;
+
+  checkUserNameSubscription: any;
+
+
+  private _usernameStream = new Subject<string>();
+  private _usernames = this._usernameStream
+    .filter((text:string) => {return !!text})
+    .distinctUntilChanged()
+    .debounceTime(600)
+    .subscribe(
+      (username: string) => {
+        this. checkUserNameSubscription = this.authService.checkUsername(username).subscribe((result) => {
+          this.isUsernameUsed = result.usernameUsed;
+        })
+      }
+    );
+
+  checkUsername() {
+    this._usernameStream.next(this.newUsername);
+  }
 
   constructor(
     private authService:AuthService,
@@ -64,7 +92,6 @@ export class ProfileChangeComponent {
         this.profile.userImageObj = JSON.parse(this.profile.userImageBase64);
         this.image64Original = `data:${this.profile.userImageObj.filetype};base64,${this.profile.userImageObj.base64}`;
       }
-      console.log(this.profile);
     })
   }
 
@@ -107,36 +134,60 @@ export class ProfileChangeComponent {
     this.userImageBase64Obj = null
   }
 
-  onProfileChangeSubmit() {
-    const user = {
-      name: this.name,
-      email: this.email,
-      username: this.username,
-      password: base64.encode(utf8.encode(this.password)),
-      userImageBase64: ''
+  arePasswordsEqual() {
+    if (this.newPassword !== '' && this.newPasswordRepeat !== '' && this.newPassword.localeCompare(this.newPasswordRepeat) === 0) {
+      return true;
+    } else {
+      return false;
     }
-
-    if (this.isUserimageValid && !!this.userImageBase64Obj) {
-      user.userImageBase64 = JSON.stringify(this.userImageBase64Obj);
-    }
-
-    this.authService.registerUser(user).subscribe( data => {
-      if (data.success) {
-        this.flashMessage.show('Now you can log in with your username and password', {
-          cssClass: 'alert-success',
-          timeout: 5000
-        });
-        this.router.navigate(['login']);
-      } else {
-        this.flashMessage.show(data.msg, {
-          cssClass: 'alert-danger',
-          timeout: 5000
-        });
-      }
-    })
   }
 
-  goToLogin() {
-    this.router.navigate(['login']);
+  arePasswordFieldsEmpty() {
+    if (this.newPassword.localeCompare(this.newPasswordRepeat) === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+
+  onProfileChangeSubmit() {
+    console.log(this.arePasswordsEqual());
+    // const user = {
+    //   name: this.name,
+    //   email: this.email,
+    //   username: this.username,
+    //   password: base64.encode(utf8.encode(this.password)),
+    //   userImageBase64: ''
+    // }
+
+    // if (this.isUserimageValid && !!this.userImageBase64Obj) {
+    //   user.userImageBase64 = JSON.stringify(this.userImageBase64Obj);
+    // }
+
+    // this.authService.registerUser(user).subscribe( data => {
+    //   if (data.success) {
+    //     this.flashMessage.show('Now you can log in with your username and password', {
+    //       cssClass: 'alert-success',
+    //       timeout: 5000
+    //     });
+    //     this.router.navigate(['login']);
+    //   } else {
+    //     this.flashMessage.show(data.msg, {
+    //       cssClass: 'alert-danger',
+    //       timeout: 5000
+    //     });
+    //   }
+    // })
+  }
+
+  goToDashboard() {
+    this.router.navigate(['dashboard']);
+  }
+
+  ngOnDestroy() {
+    this.checkUserNameSubscription.unsubscribe();
+    this.imageInputElem.onchange = null;
   }
 }

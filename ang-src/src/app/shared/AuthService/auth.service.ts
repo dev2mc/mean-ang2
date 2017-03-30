@@ -54,6 +54,21 @@ export class AuthService {
     })
   }
 
+  checkUsername(username: string) {
+    let headers = new Headers(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': this.loadToken()
+      }
+    );
+
+    return this.http.get(`http://localhost:3000/checkuser/${username}`,{headers: headers})
+    .map(res => {
+      let response = res.json();
+      return {usernameUsed: response.data}
+    })
+  }
+
   storeUserData(token:any, user:any){
     localStorage.setItem('id_token', token);
     this.authToken = token;

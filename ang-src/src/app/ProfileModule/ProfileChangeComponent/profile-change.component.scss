@@ -7,11 +7,12 @@ $profile-change_bg_col: color(gallery);
 $profile-change___input__invalid_col: color(red-col);
 $profile-change__invalid_input_col: color(white-col);
 $profile-change___invalid_input_file_col: color(ebody-clay);
+$profile-change---confirm-dialog-no-blur-col: color(white-col);
 
 .profile-change-container {
+  position: relative;
   width: 100%;
   padding: 50px 0;
-  // padding: 200px 0;
 
   // @media (max-width: 768px) {
   //   padding: 100px 0;
@@ -31,6 +32,12 @@ $profile-change___invalid_input_file_col: color(ebody-clay);
   border-radius: 10px;
 
   background: $profile-change_bg_col;
+}
+
+.profile-change_is_blurred {
+  & * {
+    filter: blur(12px);
+  }
 }
 
 .profile-change__heading {
@@ -66,10 +73,6 @@ $profile-change___invalid_input_file_col: color(ebody-clay);
 
 .profile-change__input {
   width: 100%;
-
-  &.ng-invalid.ng-touched {
-    border: 2px solid $profile-change___input__invalid_col;
-  }
 }
 
 .profile-change__input_type_file {
@@ -84,7 +87,7 @@ $profile-change___invalid_input_file_col: color(ebody-clay);
 
 .profile-change__invalid-input {
   position: absolute;
-  top: 15px;
+  top: 7px;
   right: -88px;
   width: 80px;
   padding: 5px 10px;
@@ -102,7 +105,7 @@ $profile-change___invalid_input_file_col: color(ebody-clay);
 
   &:after {
     position: absolute;
-    top: 16px;
+    top: 24px;
     left: -8px;
     width: 0;
     height: 0;
@@ -152,4 +155,18 @@ $profile-change___invalid_input_file_col: color(ebody-clay);
 .profile-change__button-container {
   width: 255px;
   margin: 0 auto;
+}
+
+.profile-change__confirm-dialog {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.no-cssfilters {
+  .profile-change__confirm-dialog {
+    background: $profile-change---confirm-dialog-no-blur-col;
+  }
 }
