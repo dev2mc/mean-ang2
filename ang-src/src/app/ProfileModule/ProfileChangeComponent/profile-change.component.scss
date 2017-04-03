@@ -170,3 +170,33 @@ $profile-change---confirm-dialog-no-blur-col: color(white-col);
     background: $profile-change---confirm-dialog-no-blur-col;
   }
 }
+
+.profile-change__confirm-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  filter: blur(0) !important;
+
+  & * {
+    filter: blur(0) !important;
+  }
+}
+
+.profile-change__confirm-dialog-container {
+  width: 410px;
+  // padding: 30px 0;
+
+  background: green;
+}
+
+$profile-change---confirm-message: color(ebony-clay);
+.profile-change__confirm-message {
+  margin: 0;
+  margin-bottom: 30px;
+  padding: 0;
+
+  color: $profile-change---confirm-message;
+  font-family: 'HelveticaNeueLTStd Roman';
+  font-size: 35px;
+}

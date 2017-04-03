@@ -34,10 +34,9 @@ export class ProfileChangeComponent implements OnInit, OnDestroy {
 
   isUsernameUsed: boolean = false;
 
-  showConfirmDialog: boolean = false;
+  showConfirmDialog: boolean = true;
 
   checkUserNameSubscription: any;
-
 
   private _usernameStream = new Subject<string>();
   private _usernames = this._usernameStream
@@ -187,7 +186,12 @@ export class ProfileChangeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.checkUserNameSubscription.unsubscribe();
-    this.imageInputElem.onchange = null;
+    if (this.checkUserNameSubscription) {
+      this.checkUserNameSubscription.unsubscribe();
+    }
+
+    if (this.imageInputElem) {
+      this.imageInputElem.onchange = null;
+    }
   }
 }

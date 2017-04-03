@@ -8,8 +8,6 @@
           <p class="profile-change__label">New name <span *ngIf='!!profile'>(current - "{{profile.name}}")</span>:</p>
           <input class="profile-change__input" type="text" required #profileChangeName="ngModel" [(ngModel)]="newName" name="name" tabindex='1'>
         </label>
-
-        <!--<p class="profile-change__invalid-input" *ngIf='profileChangeName.invalid && profileChangeName.touched'>Please fill this field</p>-->
       </div>
 
       <div class="profile-change__input-container">
@@ -68,7 +66,12 @@
   </div>
   <div class="profile-change__confirm-dialog" *ngIf='showConfirmDialog'>
     <div class="profile-change__confirm-dialog-container">
-
+      <p class="profile-change__confirm-message" *ngIf='newName==="" && !arePasswordsEqual() && newUsername==="" && !isUserimageValid && !!!userImageBase64Obj'>You didn't make any changes...</p>
+      <p class="profile-change__confirm-message" *ngIf='!(newName==="" && !arePasswordsEqual() && newUsername==="" && !isUserimageValid && !!!userImageBase64Obj)'>Confirm your changes: </p>
+      <div class="profile-change__confirm-button-container">
+        <button class="profile-change__button" *ngIf='!(newName==="" && !arePasswordsEqual() && newUsername==="" && !isUserimageValid && !!!userImageBase64Obj)'>Confirm changes</button>
+        <button class="profile-change__button" (click)='showConfirmDialog=!showConfirmDialog'>Go back</button>
+      </div>
     </div>
   </div>
 </div>
