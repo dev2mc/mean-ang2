@@ -6,6 +6,8 @@ var ImageminPlugin = require('imagemin-webpack-plugin').default;
 var commonConfig = require('./webpack.common.js');
 var helpers = require('./helpers');
 
+var path = require('path');
+
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
 module.exports = webpackMerge(commonConfig, {
@@ -13,7 +15,9 @@ module.exports = webpackMerge(commonConfig, {
 
   output: {
     // path: helpers.root('dist'),
-    path: '../public',
+    // path: '../public',
+    // path: './qqq',
+    path: path.resolve('../public'),
     publicPath: '/',
     filename: 'assets/javascript/[name].[hash].js',
     chunkFilename: '[id].[hash].chunk.js'

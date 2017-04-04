@@ -24,7 +24,7 @@ import {AuthService} from './shared/AuthService/auth.service';
 import {AuthGuard} from  './guards/AuthGuard/auth.guard';
 import {LoginGuard} from  './guards/LoginGuard/login.guard';
 
-import { FlashMessagesModule } from 'angular2-flash-messages';
+import { FlashMessagesModule } from 'angular2-flash-messages/module';
 
 @NgModule({
   imports: [
