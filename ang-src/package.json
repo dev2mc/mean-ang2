@@ -9,14 +9,14 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@angular/common": "~2.4.0",
-    "@angular/compiler": "~2.4.0",
-    "@angular/core": "~2.4.0",
-    "@angular/forms": "~2.4.0",
-    "@angular/http": "~2.4.0",
-    "@angular/platform-browser": "~2.4.0",
-    "@angular/platform-browser-dynamic": "~2.4.0",
-    "@angular/router": "~3.4.0",
+    "@angular/common": "~4.0.0",
+    "@angular/compiler": "~4.0.0",
+    "@angular/core": "~4.0.0",
+    "@angular/forms": "~4.0.0",
+    "@angular/http": "~4.0.0",
+    "@angular/platform-browser": "~4.0.0",
+    "@angular/platform-browser-dynamic": "~4.0.0",
+    "@angular/router": "~4.0.0",
     "angular2-flash-messages": "^1.0.7",
     "angular2-jwt": "^0.1.28",
     "autoprefixer": "^6.7.0",
@@ -30,14 +30,14 @@
     "ng2-charts": "^1.5.0",
     "rxjs": "5.0.1",
     "utf8": "^2.1.2",
-    "zone.js": "^0.7.4"
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@types/jasmine": "^2.5.35",
+    "@types/jasmine": "2.5.36",
     "@types/node": "^6.0.45",
     "angular2-template-loader": "^0.6.0",
     "autoprefixer": "^6.4.1",
-    "awesome-typescript-loader": "^3.0.0-beta.18",
+    "awesome-typescript-loader": "^3.0.4",
     "copy-webpack-plugin": "^3.0.1",
     "css-loader": "^0.26.1",
     "css-to-string-loader": "^0.1.1",
@@ -62,8 +62,8 @@
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
     "typescript": "~2.0.10",
-    "webpack": "^2.2.0",
-    "webpack-dev-server": "2.2.0-rc.0",
-    "webpack-merge": "^2.4.0"
+    "webpack": "2.2.1",
+    "webpack-dev-server": "2.4.1",
+    "webpack-merge": "^3.0.0"
   }
 }
