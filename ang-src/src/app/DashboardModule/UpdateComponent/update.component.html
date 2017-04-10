@@ -10,9 +10,9 @@
       {{data}}
       <span *ngIf='type==="sales"'>$</span>
     </p>
-    <template ngSwitchCase="twitter"><p class="update__description">Mentioned</p></template>
-    <template ngSwitchCase="sales"><p class="update__description">Today Sales</p></template>
-    <template ngSwitchCase="visitors"><p class="update__description">Today Visitors</p></template>
-    <template ngSwitchCase="messages"><p class="update__description">New messages</p></template>
+    <p class="update__description" *ngSwitchCase="twitter">Mentioned</p>
+    <p class="update__description" *ngSwitchCase="sales">Today Sales</p>
+    <p class="update__description" *ngSwitchCase="visitors">Today Visitors</p>
+    <p class="update__description" *ngSwitchCase="messages">New messages</p>
   </div>
 </div>
