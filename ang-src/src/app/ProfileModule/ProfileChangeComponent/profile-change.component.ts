@@ -1,7 +1,7 @@
 import {Component, OnInit, OnDestroy, ElementRef} from '@angular/core';
 import {AuthService} from '../../shared/AuthService/auth.service';
 import {Router} from '@angular/router';
-import {FlashMessagesService} from 'angular2-flash-messages/module';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 let base64 = require('base-64');
 var utf8 = require('utf8');
@@ -34,13 +34,18 @@ export class ProfileChangeComponent implements OnInit, OnDestroy {
 
   isUsernameUsed: boolean = false;
 
-  showConfirmDialog: boolean = true;
+  showConfirmDialog: boolean = false;
 
   checkUserNameSubscription: any;
 
   private _usernameStream = new Subject<string>();
   private _usernames = this._usernameStream
-    .filter((text:string) => {return !!text})
+    .filter((text:string) => {
+      if (typeof text === 'string' && text.length === 0) {
+        this.isUsernameUsed = false;
+      }
+      return !!text;
+    })
     .distinctUntilChanged()
     .debounceTime(600)
     .subscribe(
@@ -152,33 +157,70 @@ export class ProfileChangeComponent implements OnInit, OnDestroy {
 
 
   onProfileChangeSubmit() {
-    console.log(this.arePasswordsEqual());
-    // const user = {
-    //   name: this.name,
-    //   email: this.email,
-    //   username: this.username,
-    //   password: base64.encode(utf8.encode(this.password)),
-    //   userImageBase64: ''
-    // }
+    const user: any = {
+      name: null,
+      username: null,
+      password: null,
+      userImageBase64: null
+    }
 
-    // if (this.isUserimageValid && !!this.userImageBase64Obj) {
-    //   user.userImageBase64 = JSON.stringify(this.userImageBase64Obj);
-    // }
+    // const user = {};
 
-    // this.authService.registerUser(user).subscribe( data => {
-    //   if (data.success) {
-    //     this.flashMessage.show('Now you can log in with your username and password', {
-    //       cssClass: 'alert-success',
-    //       timeout: 5000
-    //     });
-    //     this.router.navigate(['login']);
-    //   } else {
-    //     this.flashMessage.show(data.msg, {
-    //       cssClass: 'alert-danger',
-    //       timeout: 5000
-    //     });
-    //   }
-    // })
+    if (this.newName !== '') {
+      user.name = this.newName;
+    }
+
+    if (!this.isUsernameUsed && this.newUsername!=="") {
+      user.username = this.newUsername;
+    }
+
+    if (this.arePasswordsEqual() === true) {
+      user.password = base64.encode(utf8.encode(this.newPassword));
+    }
+
+    if (this.isUserimageValid && !!this.userImageBase64Obj) {
+      user.userImageBase64 = JSON.stringify(this.userImageBase64Obj);
+    }
+
+    this.authService.changeProfile(user).then( data => {
+      if (data.success) {
+        if (user.username || user.password) {
+          let msgUser = !!user.username ? 'username ' : '';
+          let msgPass = !!user.password ? 'password' : '';
+          let msgAnd = (user.password && user.username) ? 'and ' : '';
+          let message = `Now you have to log in with your new ${msgUser}${msgAnd}${msgPass}`;
+
+          this.flashMessage.show(message, {
+            cssClass: 'alert-success',
+            timeout: 5000
+          });
+          this.authService.logout();
+          this.router.navigate(['login']);
+        } else {
+
+          this.flashMessage.show('Your data has been changed', {
+            cssClass: 'alert-success',
+            timeout: 5000
+          });
+          window.location.reload();
+          this.router.navigate(['dashboard']);
+        }
+
+
+      } else {
+        this.flashMessage.show(data.msg, {
+          cssClass: 'alert-danger',
+          timeout: 5000
+        });
+      }
+    })
+
+    this.authService.changeProfile(user)
+    .then((resp) => {
+      if (user.username || user.password) {
+        this.router.navigate(['logout'])
+      }
+    })
   }
 
   goToDashboard() {

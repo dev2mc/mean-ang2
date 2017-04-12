@@ -69,6 +69,22 @@ export class AuthService {
     })
   }
 
+  changeProfile(profileData: any) {
+    let headers = new Headers(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': this.loadToken()
+      }
+    );
+
+    return this.http.post('http://localhost:3000/profilechange', profileData, {headers: headers})
+    .toPromise()
+    .then((response: any) => {
+      let resObj = JSON.parse(response._body);
+      return resObj;
+    })
+  }
+
   storeUserData(token:any, user:any){
     localStorage.setItem('id_token', token);
     this.authToken = token;

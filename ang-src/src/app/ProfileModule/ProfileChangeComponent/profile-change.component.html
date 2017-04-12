@@ -13,7 +13,7 @@
       <div class="profile-change__input-container">
         <label class="profile-change__label-container">
           <p class="profile-change__label">New username <span *ngIf='!!profile'>(current - "{{profile.username}}")</span>:</p>
-          <input class="profile-change__input" type="text" required [(ngModel)]="newUsername" name="username" tabindex='2' #profileChangeUsername="ngModel" (keyup)='checkUsername()'>
+          <input class="profile-change__input" type="text" required [(ngModel)]="newUsername" name="username" tabindex='2' #profileChangeUsername="ngModel" (keyup)='checkUsername()' autocomplete="off">
         </label>
 
         <p class="profile-change__invalid-input" *ngIf='isUsernameUsed && profileChangeUsername.touched && newUsername!==""'>username is already used</p>
@@ -68,8 +68,15 @@
     <div class="profile-change__confirm-dialog-container">
       <p class="profile-change__confirm-message" *ngIf='newName==="" && !arePasswordsEqual() && newUsername==="" && !isUserimageValid && !!!userImageBase64Obj'>You didn't make any changes...</p>
       <p class="profile-change__confirm-message" *ngIf='!(newName==="" && !arePasswordsEqual() && newUsername==="" && !isUserimageValid && !!!userImageBase64Obj)'>Confirm your changes: </p>
+
+      <p class="profile-change__confirm-message profile-change__confirm-message_fong_small" *ngIf='newName!==""'>Your new name: {{newName}}</p>
+      <p class="profile-change__confirm-message profile-change__confirm-message_fong_small" *ngIf='!isUsernameUsed && newUsername!==""'>Your new username: {{newUsername}}</p>
+      <p class="profile-change__confirm-message profile-change__confirm-message_fong_small" *ngIf='arePasswordsEqual()'>Your password will be changed</p>
+      <p class="profile-change__confirm-message profile-change__confirm-message_fong_small" *ngIf='isUserimageValid && !!image64 && !!userImageBase64Obj'>Your new userimage:</p>
+      <img [src]='image64' alt="userimage" class="profile-change__userimage" *ngIf='!!image64 && !!userImageBase64Obj'>
+
       <div class="profile-change__confirm-button-container">
-        <button class="profile-change__button" *ngIf='!(newName==="" && !arePasswordsEqual() && newUsername==="" && !isUserimageValid && !!!userImageBase64Obj)'>Confirm changes</button>
+        <button class="profile-change__button" *ngIf='!(newName==="" && !arePasswordsEqual() && newUsername==="" && !isUserimageValid && !!!userImageBase64Obj)' (click)='onProfileChangeSubmit()'>Confirm changes</button>
         <button class="profile-change__button" (click)='showConfirmDialog=!showConfirmDialog'>Go back</button>
       </div>
     </div>

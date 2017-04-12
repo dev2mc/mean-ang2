@@ -1,7 +1,7 @@
 import {Component, OnInit, ElementRef} from '@angular/core';
 import {AuthService} from '../AuthService/auth.service';
 import {Router} from '@angular/router';
-import {FlashMessagesService} from 'angular2-flash-messages/module';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 let base64 = require('base-64');
 var utf8 = require('utf8');

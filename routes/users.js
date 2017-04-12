@@ -1,4 +1,5 @@
 const passport = require('passport');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const User = require('../models/user');
@@ -102,6 +103,7 @@ module.exports = (app) => {
 
     User.getUserById(userId, (err, user) => {
       if (err) {
+        console.error(err.message);
         res.json({success: false, msg: err.message});
       }
 
@@ -129,6 +131,59 @@ module.exports = (app) => {
       };
 
       res.json({msg: 'User profile extracted', success: true, data: userFound});
+    });
+  });
+
+  app.post('/profilechange', passport.authenticate('jwt', {session:false}), (req, res) => {
+    const userId = req.user;
+    const newUserData = req.body;
+
+    User.getUserById(userId, (err, user) => {
+      if (err) {
+        console.error(err.message);
+        res.json({success: false, msg: err.message});
+      }
+
+      if (newUserData.name) {
+        user.name  = newUserData.name;
+      }
+
+      if (newUserData.username) {
+        user.username = newUserData.username;
+      }
+
+      if (newUserData.userImageBase64) {
+        user.userImageBase64 = newUserData.userImageBase64;
+      }
+
+      if (newUserData.password) {
+        const password = utf8.decode(base64.decode(newUserData.password));
+
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(password, salt, (err, hash) => {
+            if(err) {console.error(err.message);}
+            user.password = hash;
+            user.save((err) => {
+              if (err) {
+                console.error(err.message);
+                res.json({success: false, msg: err.message});
+              }
+
+              res.json({success: true, msg: 'Your data has been changed'});
+            });
+          });
+        });
+
+      } else {
+        user.save((err) => {
+          if (err) {
+            console.error(err.message);
+            res.json({success: false, msg: err.message});
+          }
+
+          res.json({success: true, msg: 'Your data has been changed'});
+        });
+      }
     });
   });
 
