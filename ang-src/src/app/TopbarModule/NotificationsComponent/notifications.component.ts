@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../shared/AuthService/auth.service';
 
 interface NotifItem {
   type: string,
@@ -10,7 +11,8 @@ interface NotifItem {
   selector: 'notifications',
   template: `
     <div class="notifications">
-      <notifications-item *ngFor='let item of notificationsData' [type]='item.type' [link]='item.link' [quantity]='item.quantity'></notifications-item>
+      <notifications-item [type]='"comment"' [link]='"comments"' [quantity]='9'></notifications-item>
+      <notifications-item [type]='"email"' [link]='"mail"' [quantity]='mailsNumber'></notifications-item>
     </div>
   `,
   styles: [`
@@ -21,10 +23,18 @@ interface NotifItem {
 })
 export class NotificationsComponent implements OnInit {
   notificationsData: NotifItem[];
+  mailsNumber: Number = 0;
 
-  constructor(){};
+  constructor(
+    private authService: AuthService
+  ){};
 
   ngOnInit(): void {
+    this.authService.getProfile()
+    .then(data => {
+      this.mailsNumber = data.emailsUnread;
+    })
+
     this.notificationsData = [
       {
         type: 'comment',
@@ -34,7 +44,7 @@ export class NotificationsComponent implements OnInit {
       {
         type: 'email',
         link: 'mail',
-        quantity: 1
+        quantity: 999
       }
     ];
   }
