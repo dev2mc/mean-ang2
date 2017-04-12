@@ -77,8 +77,13 @@ $menubar-item---badge-bg-col: color(piper);
 }
 
 .menubar-item_view_collapsed {
+  .menubar-item__link {
+    justify-content: center;
+  }
+
   .menubar-item__icon {
-    margin-right: 5px;
+    // margin-right: 5px;
+    margin-right: 0px;
   }
 
   .menubar-item__name {

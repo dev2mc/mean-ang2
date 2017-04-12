@@ -8,8 +8,7 @@ let styles = require('./menubar.component.scss');
 interface menuItem {
   icon: string,
   name: string,
-  link: string,
-  number: string|boolean
+  link: string
 }
 
 @Component({
@@ -22,68 +21,57 @@ export class MenubarComponent implements OnInit {
     {
       icon: 'fa-tachometer',
       name: 'dashboard',
-      link: 'dashboard',
-      number: false
+      link: 'dashboard'
     },
     {
       icon: 'fa-envelope',
       name: 'mail',
-      link: 'mail',
-      number: false
+      link: 'mail'
     },
     {
       icon: 'fa-tasks',
       name: 'tasks',
-      link: 'tasks',
-      number: false
+      link: 'tasks'
     },
     {
       icon: 'fa-bar-chart',
       name: 'charts',
-      link: 'charts',
-      number: false
+      link: 'charts'
     },
     {
       icon: 'fa-comment',
       name: 'comment',
-      link: 'comments',
-      number: '9'
+      link: 'comments'
     },
     {
       icon: 'fa-cog',
       name: 'settings',
-      link: 'settings',
-      number: false
+      link: 'settings'
     },
     {
       icon: 'fa-star',
       name: 'feedback',
-      link: 'feedback',
-      number: false
+      link: 'feedback'
     },
     {
       icon: 'fa-link',
       name: 'links',
-      link: 'links',
-      number: false
+      link: 'links'
     },
     {
       icon: 'fa-share-alt',
       name: 'social',
-      link: 'social',
-      number: false
+      link: 'social'
     },
     {
       icon: 'fa-trophy',
       name: 'achievement',
-      link: 'achievement',
-      number: false
+      link: 'achievement'
     },
     {
       icon: 'fa-power-off',
       name: 'logout',
-      link: 'logout',
-      number: false
+      link: 'logout'
     }
   ];
   collapsed: boolean = false;

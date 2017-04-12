@@ -19,7 +19,6 @@ export class MenubarItemComponent {
   @Input() icon: string;
   @Input() name: string;
   @Input() link: string;
-  @Input() number: string|boolean;
   @Input() collapse: boolean;
 
   logout() {

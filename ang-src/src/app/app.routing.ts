@@ -21,7 +21,7 @@ import {LoginGuard} from './guards/LoginGuard/login.guard';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/profilechange',
+    redirectTo: '/dashboard',
     pathMatch: 'full'
   },
   {

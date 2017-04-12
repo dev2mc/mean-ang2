@@ -52,15 +52,21 @@ $menubar---collapse-name-col: $menubar---collapse-col;
 
 //-------------------STYLES FOR COLLAPSED MENUBAR----------------------
 .menubar_is_collapsed {
-  width: 50px;
+  width: 40px;
   padding-right: 10px;
   padding-left: 10px;
 
-  .menubar__collapse-name {
-    display: none;
+  // .menubar__collapse-name {
+  //   display: none;
+  // }
+
+  .menubar__collapse {
+    justify-content: center;
   }
 
   .menubar__collapse-icon {
+    margin-right: 0;
+
     transform: rotate(0deg);
   }
 }

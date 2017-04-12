@@ -2,7 +2,6 @@
   <a href='#' class="menubar-item__link" *ngIf='name==="logout"' (click)='logout();$event.preventDefault()'>
     <i class="fa {{icon}} menubar-item__icon" aria-hidden="true"></i>
     <p class="menubar-item__name">{{name}}</p>
-    <i *ngIf='number' class="menubar-item__badge">{{number}}</i>
     <i class="fa fa-chevron-right menubar-item__goto" aria-hidden="true"></i>
   </a>
 
