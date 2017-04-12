@@ -34,18 +34,5 @@ export class NotificationsComponent implements OnInit {
     .then(data => {
       this.mailsNumber = data.emailsUnread;
     })
-
-    this.notificationsData = [
-      {
-        type: 'comment',
-        link: 'comments',
-        quantity: 9
-      },
-      {
-        type: 'email',
-        link: 'mail',
-        quantity: 999
-      }
-    ];
   }
 }
